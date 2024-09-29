@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+# Python基础语法
+
+### 运算符
+
+> is 与 == 区别：
+> is 用于判断两个变量引用对象是否为同一个(同一块内存空间)， == 用于判断引用变量的值是否相等。">
+<meta property="og:title" content="Python基础语法">
+<meta property="og:description" content="
+
+# Python基础语法
+
+### 运算符
+
+> is 与 == 区别：
+> is 用于判断两个变量引用对象是否为同一个(同一块内存空间)， == 用于判断引用变量的值是否相等。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aneverspring.github.io/evenstar//post/Python-ji-chu-yu-fa.html">
+<meta property="og:image" content="https://sm.ms/image/DVHlFwPxga64KZX">
+<title>Python基础语法</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Python基础语法</h1>
+<div class="title-right">
+    <a href="https://aneverspring.github.io/evenstar/" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/AnEverSpring/evenstar/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Python基础语法</h1>
+<h3>运算符</h3>
+<blockquote>
+<p>is 与 == 区别：<br>
+is 用于判断两个变量引用对象是否为同一个(同一块内存空间)， == 用于判断引用变量的值是否相等。</p>
+</blockquote>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>]
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">is</span> <span class="pl-s1">a</span> 
+<span class="pl-c1">True</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">==</span> <span class="pl-s1">a</span>
+<span class="pl-c1">True</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span>[:]
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">is</span> <span class="pl-s1">a</span>
+<span class="pl-c1">False</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">==</span> <span class="pl-s1">a</span>
+<span class="pl-c1">True</span></pre></div>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">==**==</td>
+<td align="left">==指数 (最高优先级)==</td>
+</tr>
+<tr>
+<td align="left">~ + -</td>
+<td align="left">按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</td>
+</tr>
+<tr>
+<td align="left">* / % ==//==</td>
+<td align="left">乘，除，取模和==取整除==</td>
+</tr>
+<tr>
+<td align="left">+ -</td>
+<td align="left">加法减法</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt; &lt;&lt;</td>
+<td align="left">右移，左移运算符</td>
+</tr>
+<tr>
+<td align="left">&amp;</td>
+<td align="left">位 ‘AND’</td>
+</tr>
+<tr>
+<td align="left">^ |</td>
+<td align="left">位运算符</td>
+</tr>
+<tr>
+<td align="left">&lt;= &lt; &gt; &gt;=</td>
+<td align="left">比较运算符</td>
+</tr>
+<tr>
+<td align="left">&lt;&gt; == !=</td>
+<td align="left">等于运算符</td>
+</tr>
+<tr>
+<td align="left">= %= /= //= -= += *= **=</td>
+<td align="left">赋值运算符</td>
+</tr>
+<tr>
+<td align="left">is is not</td>
+<td align="left">身份运算符</td>
+</tr>
+<tr>
+<td align="left">in not in</td>
+<td align="left">成员运算符</td>
+</tr>
+<tr>
+<td align="left">not and or</td>
+<td align="left">逻辑运算符</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>数据类型</h3>
+<p>Python基本数据类型一般分为6种：数值（Numbers）、字符串（String）、列表（List）、元组（Tuple）、字典（Dictionary）、集合（Set）。</p>
+<ul>
+<li>Python 中的变量赋值不需要类型声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。</li>
+</ul>
+<p>Python允许你同时为多个变量赋值。例如：</p>
+<pre class="notranslate"><code class="notranslate">a = b = c = 1
+</code></pre>
+<p>以上实例，创建一个整型对象，值为1，三个变量被分配到相同的内存空间上。</p>
+<p>您也可以为多个对象指定多个变量。例如：</p>
+<pre class="notranslate"><code class="notranslate">a, b, c = 1, 2, "ShowMeAI"
+</code></pre>
+<p>以上实例，两个整型对象 1 和 2 分别分配给变量 a 和 b，字符串对象 “ShowMeAI” 分配给变量 c。</p>
+<ol>
+<li>
+<p>数值：<code class="notranslate">int, float, bool, complex(复数)</code></p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">del</span> <span class="pl-s1">num_a</span>,<span class="pl-s1">num_b</span> <span class="pl-c"># 删除 </span></pre></div>
+</li>
+<li>
+<p>字符串</p>
+<p>字符串取值顺序：</p>
+<ul>
+<li>从左到右索引默认0开始的，最大范围是字符串长度少1</li>
+<li>从右到左索引默认-1开始的，最大范围是字符串开头</li>
+</ul>
+</li>
+</ol>
+<p>从字符串中获取一段子字符串的话，可以使用 <strong>[头下标:尾下标]</strong> 来截取相应的字符串，其中下标是从 0 开始算起，可以是正数或负数，下标可以为空表示取到头或尾。</p>
+<p><strong>[头下标:尾下标]</strong> 获取的子字符串包含头下标的字符，但==不包含尾下标的字符==。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-s">'Hello ShowMeAI!'</span>
+
+<span class="pl-en">print</span>(<span class="pl-s1">str</span>) <span class="pl-c"># 输出完整字符串</span>
+
+<span class="pl-en">print</span>(<span class="pl-s1">str</span>[<span class="pl-c1">0</span>]) <span class="pl-c"># 输出字符串中的第一个字符</span>
+
+<span class="pl-en">print</span>(<span class="pl-s1">str</span>[<span class="pl-c1">2</span>:<span class="pl-c1">5</span>]) <span class="pl-c"># 输出字符串中第三个至第六个之间的字符串</span>
+
+<span class="pl-en">print</span>(<span class="pl-s1">str</span>[<span class="pl-c1">2</span>:]) <span class="pl-c"># 输出从第三个字符开始的字符串</span>
+
+<span class="pl-en">print</span>(<span class="pl-s1">str</span> <span class="pl-c1">*</span> <span class="pl-c1">2</span>) <span class="pl-c"># 输出字符串两次</span>
+
+<span class="pl-en">print</span>(<span class="pl-s1">str</span> <span class="pl-c1">+</span> <span class="pl-s">" Awesome"</span>) <span class="pl-c"># 输出连接的字符串</span></pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>!
+<span class="pl-v">H</span>
+<span class="pl-s1">llo</span>
+<span class="pl-s1">llo</span> <span class="pl-v">ShowMeAI</span>!
+<span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>!<span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>!
+<span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>! <span class="pl-v">Awesome</span></pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span><span class="pl-s1">letters</span> <span class="pl-c1">=</span> [<span class="pl-s">'s'</span>,<span class="pl-s">'h'</span>,<span class="pl-s">'o'</span>,<span class="pl-s">'w'</span>,<span class="pl-s">'m'</span>,<span class="pl-s">'e'</span>]
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span><span class="pl-s1">letters</span> <span class="pl-c1">=</span> [<span class="pl-c1">1</span>:<span class="pl-c1">4</span>:<span class="pl-c1">2</span>]
+
+[<span class="pl-s">'h'</span>,<span class="pl-s">'w'</span>]</pre></div>
+<ol start="3">
+<li>
+<p>列表</p>
+<p>List（列表） 是 Python 中使用最频繁的数据类型。</p>
+<p>加号 <strong>+</strong> 是列表连接运算符，星号 ***** 是重复操作。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">list</span> <span class="pl-c1">=</span> [ <span class="pl-s">'ShowMeAI'</span>, <span class="pl-c1">786</span> , <span class="pl-c1">2.23</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">70.2</span> ]
+<span class="pl-s1">tinylist</span> <span class="pl-c1">=</span> [<span class="pl-c1">123</span>, <span class="pl-s">'show'</span>]
+<span class="pl-en">print</span>(<span class="pl-s1">list</span>) <span class="pl-c"># 输出完整列表</span>
+<span class="pl-en">print</span>(<span class="pl-s1">list</span>[<span class="pl-c1">0</span>]) <span class="pl-c"># 输出列表的第一个元素</span>
+<span class="pl-en">print</span>(<span class="pl-s1">list</span>[<span class="pl-c1">1</span>:<span class="pl-c1">3</span>]) <span class="pl-c"># 输出第二个至第三个元素 </span>
+<span class="pl-en">print</span>(<span class="pl-s1">list</span>[<span class="pl-c1">2</span>:]) <span class="pl-c"># 输出从第三个开始至列表末尾的所有元素</span>
+<span class="pl-en">print</span>(<span class="pl-s1">tinylist</span> <span class="pl-c1">*</span> <span class="pl-c1">2</span>) <span class="pl-c"># 输出列表两次</span>
+<span class="pl-en">print</span>(<span class="pl-s1">list</span> <span class="pl-c1">+</span> <span class="pl-s1">tinylist</span>) <span class="pl-c"># 打印组合的列表1</span></pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate">[<span class="pl-s">'ShowMeAI'</span>, <span class="pl-c1">786</span>, <span class="pl-c1">2.23</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">70.2</span>]
+<span class="pl-v">ShowMeAI</span>[<span class="pl-c1">786</span>, <span class="pl-c1">2.23</span>]
+[<span class="pl-c1">2.23</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">70.2</span>]
+[<span class="pl-c1">123</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">123</span>, <span class="pl-s">'show'</span>]
+[<span class="pl-s">'ShowMeAI'</span>, <span class="pl-c1">786</span>, <span class="pl-c1">2.23</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">70.2</span>, <span class="pl-c1">123</span>, <span class="pl-s">'show'</span>]</pre></div>
+</li>
+<li>
+<p>元组</p>
+<p>元组用 <strong>()</strong> 标识。内部元素用逗号隔开。但是元组不能二次赋值，相当于只读列表。</p>
+<p>以下是元组无效的，因为元组是不允许更新的。而列表是允许更新的：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">tuple</span> <span class="pl-c1">=</span> ( <span class="pl-s">'ShowMeAI'</span>, <span class="pl-c1">345</span> , <span class="pl-c1">2.23</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">456.2</span> )
+<span class="pl-s1">list</span> <span class="pl-c1">=</span> [ <span class="pl-s">'ShowMeAI'</span>, <span class="pl-c1">345</span> , <span class="pl-c1">2.23</span>, <span class="pl-s">'show'</span>, <span class="pl-c1">456.2</span> ]
+<span class="pl-s1">tuple</span>[<span class="pl-c1">2</span>] <span class="pl-c1">=</span> <span class="pl-c1">100</span>    <span class="pl-c"># 元组中是非法应用</span>
+<span class="pl-s1">list</span>[<span class="pl-c1">2</span>] <span class="pl-c1">=</span> <span class="pl-c1">100</span>     <span class="pl-c"># 列表中是合法应用</span></pre></div>
+</li>
+<li>
+<p>字典</p>
+<p>字典(dictionary)是除列表以外python之中最灵活的内置数据结构类型。列表是有序的对象集合，字典是无序的对象集合。</p>
+<p>两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。</p>
+<p>字典用”{ }”标识。字典由索引(key)和它对应的值value组成。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span><span class="pl-s1">d</span> <span class="pl-c1">=</span> {<span class="pl-s1">key1</span> : <span class="pl-s1">value1</span>, <span class="pl-s1">key2</span> : <span class="pl-s1">value2</span>, <span class="pl-s1">key3</span> : <span class="pl-s1">value3</span>}</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span> <span class="pl-c1">=</span> {}
+<span class="pl-s1">dict</span>[<span class="pl-s">'one'</span>] <span class="pl-c1">=</span> <span class="pl-s">"This is one"</span>
+<span class="pl-s1">dict</span>[<span class="pl-c1">2</span>] <span class="pl-c1">=</span> <span class="pl-s">"This is two"</span>
+<span class="pl-s1">tinydict</span> <span class="pl-c1">=</span> {<span class="pl-s">'name'</span>: <span class="pl-s">'ShowMeAI'</span>,<span class="pl-s">'code'</span>:<span class="pl-c1">3456</span>, <span class="pl-s">'dept'</span>: <span class="pl-s">'AI'</span>}
+<span class="pl-en">print</span>(<span class="pl-s1">dict</span>[<span class="pl-s">'one'</span>]) <span class="pl-c"># 输出键为'one' 的值</span>
+<span class="pl-en">print</span>(<span class="pl-s1">dict</span>[<span class="pl-c1">2</span>]) <span class="pl-c"># 输出键为 2 的值</span>
+<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>) <span class="pl-c"># 输出完整的字典</span>
+<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>.<span class="pl-en">keys</span>()) <span class="pl-c"># 输出所有键</span>
+<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>.<span class="pl-en">values</span>()) <span class="pl-c"># 输出所有值</span></pre></div>
+<p>输出结果为：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">This</span> <span class="pl-c1">is</span> <span class="pl-s1">one</span>
+<span class="pl-v">This</span> <span class="pl-c1">is</span> <span class="pl-s1">two</span>
+{<span class="pl-s">'name'</span>: <span class="pl-s">'ShowMeAI'</span>, <span class="pl-s">'code'</span>: <span class="pl-c1">3456</span>, <span class="pl-s">'dept'</span>: <span class="pl-s">'AI'</span>}
+<span class="pl-en">dict_keys</span>([<span class="pl-s">'name'</span>, <span class="pl-s">'code'</span>, <span class="pl-s">'dept'</span>])
+<span class="pl-en">dict_values</span>([<span class="pl-s">'ShowMeAI'</span>, <span class="pl-c1">3456</span>, <span class="pl-s">'AI'</span>])</pre></div>
+</li>
+</ol>
+<p>另外一种执行循环的遍历方式是通过索引</p>
+<pre class="notranslate"><code class="notranslate">fruits = ['香蕉', '苹果',  '葡萄']
+for index in range(len(fruits)):
+	print('当前水果 : %s' % fruits[index])
+	print("完成!")
+</code></pre>
+<p>以上代码输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">当前水果</span> : <span class="pl-s1">香蕉</span>
+<span class="pl-s1">当前水果</span> : <span class="pl-s1">苹果</span>
+<span class="pl-s1">当前水果</span> : <span class="pl-s1">葡萄</span>
+<span class="pl-s1">完成</span>!</pre></div>
+<p>以上实例我们使用了内置函数 len() 和 range(),函数 len() 返回列表的长度，即元素的个数。 range返回一个序列的数。</p>
+<h3>循环</h3>
+<ol>
+<li>在 python 中，for … else 表示这样的意思，for 中的语句和普通的没有区别，else 中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行，while … else 也是一样。</li>
+</ol>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">for</span> <span class="pl-s1">num</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">20</span>,<span class="pl-c1">30</span>):  <span class="pl-c"># 迭代 10 到 20 之间的数字  </span>
+	<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">2</span>,<span class="pl-s1">num</span>): <span class="pl-c"># 根据因子迭代</span>
+    	<span class="pl-k">if</span> <span class="pl-s1">num</span><span class="pl-c1">%</span><span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span>:      <span class="pl-c"># 确定第一个因子 </span>
+    		<span class="pl-s1">j</span><span class="pl-c1">=</span><span class="pl-s1">num</span><span class="pl-c1">/</span><span class="pl-s1">i</span>          <span class="pl-c"># 计算第二个因子</span>
+    		<span class="pl-en">print</span> (<span class="pl-s">'%d 等于 %d * %d'</span> <span class="pl-c1">%</span> (<span class="pl-s1">num</span>,<span class="pl-s1">i</span>,<span class="pl-s1">j</span>))
+    		<span class="pl-k">break</span>            <span class="pl-c"># 跳出当前循环</span>
+    <span class="pl-k">else</span>:                  <span class="pl-c"># 循环的 else 部分</span>
+    	<span class="pl-en">print</span> (<span class="pl-s">'%d 是一个质数'</span> <span class="pl-c1">%</span> <span class="pl-s1">num</span>)</pre></div>
+<p>以上代码输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">20</span> <span class="pl-s1">等于</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-c1">10</span>
+<span class="pl-c1">21</span> <span class="pl-s1">等于</span> <span class="pl-c1">3</span> <span class="pl-c1">*</span> <span class="pl-c1">7</span>
+<span class="pl-c1">22</span> <span class="pl-s1">等于</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-c1">11</span>
+<span class="pl-c1">23</span> <span class="pl-s1">是一个质数</span>
+<span class="pl-c1">24</span> <span class="pl-s1">等于</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-c1">12</span>
+<span class="pl-c1">25</span> <span class="pl-s1">等于</span> <span class="pl-c1">5</span> <span class="pl-c1">*</span> <span class="pl-c1">5</span>
+<span class="pl-c1">26</span> <span class="pl-s1">等于</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-c1">13</span>
+<span class="pl-c1">27</span> <span class="pl-s1">等于</span> <span class="pl-c1">3</span> <span class="pl-c1">*</span> <span class="pl-c1">9</span>
+<span class="pl-c1">28</span> <span class="pl-s1">等于</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-c1">14</span>
+<span class="pl-c1">29</span> <span class="pl-s1">是一个质数</span></pre></div>
+<h4>空心等边三角形</h4>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">rows</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-en">input</span>(<span class="pl-s">'输入列数： '</span>))
+<span class="pl-en">print</span>(<span class="pl-s">"打印空心等边三角形，这里去掉if-else条件判断就是实心的"</span>)
+<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-s1">rows</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>):<span class="pl-c">#变量i控制行数</span>
+    <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-s1">rows</span> <span class="pl-c1">-</span> <span class="pl-s1">i</span>):<span class="pl-c">#(1,rows-i)</span>
+        <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-s1">j</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-k">for</span> <span class="pl-s1">k</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">-</span> <span class="pl-c1">1</span>):<span class="pl-c">#(1,2*i)</span>
+        <span class="pl-k">if</span> <span class="pl-s1">k</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span> <span class="pl-c1">or</span> <span class="pl-s1">k</span> <span class="pl-c1">==</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">-</span> <span class="pl-c1">2</span> <span class="pl-c1">or</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-s1">rows</span>:
+            <span class="pl-k">if</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-s1">rows</span>:
+                <span class="pl-k">if</span> <span class="pl-s1">k</span> <span class="pl-c1">%</span> <span class="pl-c1">2</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span>:<span class="pl-c">#因为第一个数是从0开始的，所以要是偶数打印*，奇数打印空格</span>
+                    <span class="pl-en">print</span>(<span class="pl-s">"*"</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+                <span class="pl-k">else</span>:
+                    <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)<span class="pl-c">#注意这里的", end='' "，一定不能省略，可以起到不换行的作用</span>
+            <span class="pl-k">else</span>:
+               <span class="pl-en">print</span>(<span class="pl-s">"*"</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-k">else</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-s1">k</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-en">print</span>(<span class="pl-s">"<span class="pl-cce">\</span></span>
+<span class="pl-s"><span class="pl-cce"></span>"</span>)
+    <span class="pl-s1">i</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span></pre></div>
+<h4>菱形</h4>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">rows</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-en">input</span>(<span class="pl-s">'输入列数： '</span>))
+<span class="pl-en">print</span>(<span class="pl-s">"打印空心等菱形，这里去掉if-else条件判断就是实心的"</span>)
+<span class="pl-s1">rows</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-en">input</span>(<span class="pl-s">'输入列数： '</span>))
+<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">rows</span>):<span class="pl-c">#变量i控制行数</span>
+    <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">rows</span> <span class="pl-c1">-</span> <span class="pl-s1">i</span>):<span class="pl-c">#(1,rows-i)</span>
+        <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-s1">j</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-k">for</span> <span class="pl-s1">k</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">-</span> <span class="pl-c1">1</span>):<span class="pl-c">#(1,2*i)</span>
+        <span class="pl-k">if</span> <span class="pl-s1">k</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span> <span class="pl-c1">or</span> <span class="pl-s1">k</span> <span class="pl-c1">==</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">-</span> <span class="pl-c1">2</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">"*"</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-k">else</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-s1">k</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-en">print</span>(<span class="pl-s">"<span class="pl-cce">\</span></span>
+<span class="pl-s"><span class="pl-cce"></span>"</span>)
+    <span class="pl-s1">i</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-c">#菱形的下半部分</span>
+<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">rows</span>):
+    <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">i</span>):<span class="pl-c">#(1,rows-i)</span>
+        <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-s1">j</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-k">for</span> <span class="pl-s1">k</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">2</span> <span class="pl-c1">*</span> (<span class="pl-s1">rows</span> <span class="pl-c1">-</span> <span class="pl-s1">i</span>) <span class="pl-c1">-</span> <span class="pl-c1">1</span>):<span class="pl-c">#(1,2*i)</span>
+        <span class="pl-k">if</span> <span class="pl-s1">k</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span> <span class="pl-c1">or</span> <span class="pl-s1">k</span> <span class="pl-c1">==</span> <span class="pl-c1">2</span> <span class="pl-c1">*</span> (<span class="pl-s1">rows</span> <span class="pl-c1">-</span> <span class="pl-s1">i</span>) <span class="pl-c1">-</span> <span class="pl-c1">2</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">"*"</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-k">else</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">" "</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">''</span>)
+        <span class="pl-s1">k</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-en">print</span>(<span class="pl-s">"<span class="pl-cce">\</span></span>
+<span class="pl-s"><span class="pl-cce"></span>"</span>)
+    <span class="pl-s1">i</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span></pre></div>
+<h3>格式化</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">数字</th>
+<th align="left">格式</th>
+<th align="left">输出</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">3.1415926</td>
+<td align="left">{:.2f}</td>
+<td align="left">3.14</td>
+<td align="left">保留小数点后两位</td>
+</tr>
+<tr>
+<td align="left">3.1415926</td>
+<td align="left">{:+.2f}</td>
+<td align="left">+3.14</td>
+<td align="left">带符号保留小数点后两位</td>
+</tr>
+<tr>
+<td align="left">-1</td>
+<td align="left">{:+.2f}</td>
+<td align="left">-1.00</td>
+<td align="left">带符号保留小数点后两位</td>
+</tr>
+<tr>
+<td align="left">2.71828</td>
+<td align="left">{:.0f}</td>
+<td align="left">3</td>
+<td align="left">不带小数</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">{:0&gt;2d}</td>
+<td align="left">05</td>
+<td align="left">数字补零 (填充左边, 宽度为2)</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">{:x&lt;4d}</td>
+<td align="left">5xxx</td>
+<td align="left">数字补x (填充右边, 宽度为4)</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">{:x&lt;4d}</td>
+<td align="left">10xx</td>
+<td align="left">数字补x (填充右边, 宽度为4)</td>
+</tr>
+<tr>
+<td align="left">1000000</td>
+<td align="left">{:,}</td>
+<td align="left">1,000,000</td>
+<td align="left">以逗号分隔的数字格式</td>
+</tr>
+<tr>
+<td align="left">0.25</td>
+<td align="left">{:.2%}</td>
+<td align="left">25.00%</td>
+<td align="left">百分比格式</td>
+</tr>
+<tr>
+<td align="left">1000000000</td>
+<td align="left">{:.2e}</td>
+<td align="left">1.00e+09</td>
+<td align="left">指数记法</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left">{:&gt;10d}</td>
+<td align="left">13</td>
+<td align="left">右对齐 (默认, 宽度为10)</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left">{:&lt;10d}</td>
+<td align="left">13</td>
+<td align="left">左对齐 (宽度为10)</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left">{:^10d}</td>
+<td align="left">13</td>
+<td align="left">中间对齐 (宽度为10)</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>Python三引号</h3>
+<p>Python 中三引号可以将复杂的字符串进行赋值。</p>
+<p>Python 三引号允许一个字符串跨多行，字符串中可以包含换行符、制表符以及其他特殊字符。</p>
+<p>三引号的语法是一对连续的单引号或者双引号（通常都是成对的用）。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"> <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">hi</span> <span class="pl-c1">=</span> <span class="pl-s">'''hi </span>
+<span class="pl-s"> there'''</span>
+ <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">hi</span>   <span class="pl-c"># repr()</span>
+ <span class="pl-s">'hi<span class="pl-cce">\</span></span>
+<span class="pl-s"><span class="pl-cce"></span> there'</span>
+ <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-en">print</span>(<span class="pl-s1">hi</span>)  <span class="pl-c"># str()</span>
+ 
+ <span class="pl-s1">hi</span> <span class="pl-s1">there</span></pre></div>
+<p>三引号让程序员从引号和特殊字符串的泥潭里面解脱出来，自始至终保持一小块字符串的格式是所谓的WYSIWYG（所见即所得）格式的。</p>
+<p>一个典型的用例是，当你需要一块HTML或者SQL时，这时当用三引号标记，使用传统的转义字符体系将十分费神。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"> <span class="pl-s1">errHTML</span> <span class="pl-c1">=</span> <span class="pl-s">'''</span>
+<span class="pl-s"> &lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;</span>
+<span class="pl-s"> Friends CGI Demo&lt;/TITLE&gt;&lt;/HEAD&gt;</span>
+<span class="pl-s"> &lt;BODY&gt;&lt;H3&gt;ERROR&lt;/H3&gt;</span>
+<span class="pl-s"> &lt;B&gt;%s&lt;/B&gt;&lt;P&gt;</span>
+<span class="pl-s"> &lt;FORM&gt;&lt;INPUT TYPE=button VALUE=Back</span>
+<span class="pl-s"> ONCLICK="window.history.back()"&gt;&lt;/FORM&gt;</span>
+<span class="pl-s"> &lt;/BODY&gt;&lt;/HTML&gt;'''</span>
+ 
+ <span class="pl-s1">cursor</span>.<span class="pl-en">execute</span>(<span class="pl-s">'''</span>
+<span class="pl-s"> CREATE TABLE users (</span>
+<span class="pl-s"> login VARCHAR(8), </span>
+<span class="pl-s"> uid INTEGER,prid INTEGER)</span>
+<span class="pl-s"> '''</span>)</pre></div>
+<h3>列表</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">list</span> <span class="pl-c1">=</span> []          <span class="pl-c"># 空列表</span>
+<span class="pl-s1">list</span>.<span class="pl-en">append</span>(<span class="pl-s">'Google'</span>)   <span class="pl-c"># 使用 append() 添加元素</span>
+<span class="pl-s1">list</span>.<span class="pl-en">append</span>(<span class="pl-s">'ShowMeAI'</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">list</span>)</pre></div>
+<p>以上代码执行结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate">[<span class="pl-s">'Google'</span>, <span class="pl-s">'ShowMeAI'</span>]</pre></div>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">Python 表达式</th>
+<th align="left">结果</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">len([1, 2, 3])</td>
+<td align="left">3</td>
+<td align="left">长度</td>
+</tr>
+<tr>
+<td align="left">[1, 2, 3] + [4, 5, 6]</td>
+<td align="left">[1, 2, 3, 4, 5, 6]</td>
+<td align="left">组合</td>
+</tr>
+<tr>
+<td align="left">[‘Hi!’] * 4</td>
+<td align="left">[‘Hi!’, ‘Hi!’, ‘Hi!’, ‘Hi!’]</td>
+<td align="left">重复</td>
+</tr>
+<tr>
+<td align="left">3 in [1, 2, 3]</td>
+<td align="left">True</td>
+<td align="left">元素是否存在于列表中</td>
+</tr>
+<tr>
+<td align="left">for x in [1, 2, 3]: print x,</td>
+<td align="left">1 2 3</td>
+<td align="left">迭代</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">函数</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">len(list)</td>
+<td align="left">列表元素个数</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">max(list)</td>
+<td align="left">返回列表元素最大值</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">min(list)</td>
+<td align="left">返回列表元素最小值</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">list(seq)</td>
+<td align="left">将元组转换为列表</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">方法</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">list.append(obj)</td>
+<td align="left">在列表末尾添加新的对象</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">list.count(obj)</td>
+<td align="left">统计某个元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">list.extend(seq)</td>
+<td align="left">在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">list.index(obj)</td>
+<td align="left">从列表中找出某个值第一个匹配项的索引位置</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">list.insert(index, obj)</td>
+<td align="left">将对象插入列表</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">list.pop([index=-1])</td>
+<td align="left">移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">list.remove(obj)</td>
+<td align="left">移除列表中某个值的第一个匹配项</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">list.reverse()</td>
+<td align="left">反向列表中元素</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">list.sort(cmp=None, key=None, reverse=False)</td>
+<td align="left">对原列表进行排序</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>字典</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">判断key-'name'是否存在</th>
+<th align="left">name in a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">增加某个key--'age'</td>
+<td align="left">a['age'] = 20</td>
+</tr>
+<tr>
+<td align="left">获取某个key的值</td>
+<td align="left">a['name']</td>
+</tr>
+<tr>
+<td align="left">获取所有的value</td>
+<td align="left">a.values()</td>
+</tr>
+<tr>
+<td align="left">获取所有的key</td>
+<td align="left">a.keys()</td>
+</tr>
+<tr>
+<td align="left">删除key</td>
+<td align="left">a.pop('name')<br>如果key不存在会报错<br>a.pop('name',0)<br> 增加默认值，不会报错</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">del</span> <span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]  <span class="pl-c"># 删除键是'Name'的条目</span>
+<span class="pl-s1">dict</span>.<span class="pl-en">clear</span>()      <span class="pl-c"># 清空字典所有条目</span>
+<span class="pl-k">del</span> <span class="pl-s1">dict</span>          <span class="pl-c"># 删除字典</span></pre></div>
+<p>两个重要的点需要记住：</p>
+<p>1）不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会更新前一个，如下实例：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span> <span class="pl-c1">=</span> {<span class="pl-s">'Name'</span>: <span class="pl-s">'Zara'</span>, <span class="pl-s">'Age'</span>: <span class="pl-c1">7</span>, <span class="pl-s">'Name'</span>: <span class="pl-s">'ShowMeAI'</span>} <span class="pl-k">print</span> <span class="pl-s">"dict['Name']: "</span>, <span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]</pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]:  <span class="pl-v">ShowMeAI</span></pre></div>
+<p>2）键必须不可变，所以可以用数字，字符串或元组充当，所以用列表就不行，如下实例：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span> <span class="pl-c1">=</span> {[<span class="pl-s">'Name'</span>]: <span class="pl-s">'Zara'</span>, <span class="pl-s">'Age'</span>: <span class="pl-c1">7</span>}
+<span class="pl-en">print</span>(<span class="pl-s">"dict['Name']: "</span>, <span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>])</pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">Traceback</span> (<span class="pl-s1">most</span> <span class="pl-s1">recent</span> <span class="pl-s1">call</span> <span class="pl-s1">last</span>):
+<span class="pl-v">File</span> <span class="pl-s">"&lt;string&gt;"</span>, <span class="pl-s1">line</span> <span class="pl-c1">3</span>, <span class="pl-s1">in</span> <span class="pl-c1">&lt;</span><span class="pl-s1">module</span><span class="pl-c1">&gt;</span>
+<span class="pl-v">TypeError</span>: <span class="pl-s1">unhashable</span> <span class="pl-s1">type</span>: <span class="pl-s">'list'</span></pre></div>
+<h4>字典内置函数与方法</h4>
+<p>Python字典包含了以下内置函数：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">函数及描述</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">cmp(dict1, dict2)</td>
+<td align="left">比较两个字典元素。</td>
+</tr>
+<tr>
+<td align="left">len(dict)</td>
+<td align="left">计算字典元素个数，即键的总数。</td>
+</tr>
+<tr>
+<td align="left">str(dict)</td>
+<td align="left">输出字典可打印的字符串表示。</td>
+</tr>
+<tr>
+<td align="left">type(variable)</td>
+<td align="left">返回输入的变量类型，如果变量是字典就返回字典类型。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>Python字典包含了以下内置方法：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">函数及描述</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">dict.clear()</td>
+<td align="left">删除字典内所有元素</td>
+</tr>
+<tr>
+<td align="left">dict.copy()</td>
+<td align="left">返回一个字典的浅复制</td>
+</tr>
+<tr>
+<td align="left">dict.fromkeys(seq[, val])</td>
+<td align="left">创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值</td>
+</tr>
+<tr>
+<td align="left">dict.get(key, default=None)</td>
+<td align="left">返回指定键的值，如果值不在字典中返回default值</td>
+</tr>
+<tr>
+<td align="left">dict.has_key(key)</td>
+<td align="left">如果键在字典dict里返回true，否则返回false</td>
+</tr>
+<tr>
+<td align="left">dict.items()</td>
+<td align="left">返回可遍历的(键, 值) 元组数组的视图对象</td>
+</tr>
+<tr>
+<td align="left">dict.keys()</td>
+<td align="left">返回一个字典所有的键的视图对象</td>
+</tr>
+<tr>
+<td align="left">dict.setdefault(key, default=None)</td>
+<td align="left">和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default</td>
+</tr>
+<tr>
+<td align="left">dict.update(dict2)</td>
+<td align="left">把字典dict2的键/值对更新到dict里</td>
+</tr>
+<tr>
+<td align="left">dict.values()</td>
+<td align="left">返回字典中的所有值的视图对象</td>
+</tr>
+<tr>
+<td align="left">pop(key[,default])</td>
+<td align="left">删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。</td>
+</tr>
+<tr>
+<td align="left">popitem()</td>
+<td align="left">返回并删除字典中的最后一对键和值。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>集合内置方法完整列表</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">add()</td>
+<td align="left">为集合添加元素</td>
+</tr>
+<tr>
+<td align="left">clear()</td>
+<td align="left">移除集合中的所有元素</td>
+</tr>
+<tr>
+<td align="left">copy()</td>
+<td align="left">拷贝一个集合</td>
+</tr>
+<tr>
+<td align="left">difference()</td>
+<td align="left">返回多个集合的差集</td>
+</tr>
+<tr>
+<td align="left">difference_update()</td>
+<td align="left">移除集合中的元素，该元素在指定的集合也存在。</td>
+</tr>
+<tr>
+<td align="left">discard()</td>
+<td align="left">删除集合中指定的元素</td>
+</tr>
+<tr>
+<td align="left">intersection()</td>
+<td align="left">返回集合的交集</td>
+</tr>
+<tr>
+<td align="left">intersection_update()</td>
+<td align="left">返回集合的交集。</td>
+</tr>
+<tr>
+<td align="left">isdisjoint()</td>
+<td align="left">判断两个集合是否包含相同的元素，如果没有返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td align="left">issubset()</td>
+<td align="left">判断指定集合是否为该方法参数集合的子集。</td>
+</tr>
+<tr>
+<td align="left">issuperset()</td>
+<td align="left">判断该方法的参数集合是否为指定集合的子集</td>
+</tr>
+<tr>
+<td align="left">pop()</td>
+<td align="left">随机移除元素</td>
+</tr>
+<tr>
+<td align="left">remove()</td>
+<td align="left">移除指定元素</td>
+</tr>
+<tr>
+<td align="left">symmetric_difference()</td>
+<td align="left">返回两个集合中不重复的元素集合。</td>
+</tr>
+<tr>
+<td align="left">symmetric_difference_update()</td>
+<td align="left">移除当前集合中在另外一个指定集合相同的元素，并将另外一个指定集合中不同的元素插入到当前集合中。</td>
+</tr>
+<tr>
+<td align="left">union()</td>
+<td align="left">返回两个集合的并集</td>
+</tr>
+<tr>
+<td align="left">update()</td>
+<td align="left">给集合添加元素</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>可更改(mutable)与不可更改(immutable)对象</h3>
+<p>在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。</p>
+<ul>
+<li>**不可变类型：**变量赋值 <strong>a=10</strong> 后再赋值 <strong>a=5</strong>，这里实际是新生成一个 int 值对象 5，再让 a 指向它，而 10 被丢弃，不是改变 a 的值，相当于新生成了 a。</li>
+<li>**可变类型：**变量赋值 <strong>l=[1,2,3,4]</strong> 后再赋值 <strong>l[2]=5</strong> 则是将 list l 的第三个元素值更改，本身l没有动，只是其内部的一部分值被修改了。</li>
+</ul>
+<p><strong>python 函数的参数传递</strong>：</p>
+<ul>
+<li>**不可变类型：**类似 C++ 的值传递，如整数、字符串、元组。如 func(a)，传递的只是 a 的值，没有影响 a 对象本身。如果在 func(a) 内部修改 a 的值，则是新生成一个 a 的对象。</li>
+<li>**可变类型：**类似 C++ 的引用传递，如 列表，字典。如 func(l)，则是将 l 真正的传过去，修改后 func 外部的 l 也会受影响</li>
+</ul>
+<p>python 中一切都是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象。</p>
+<h3>不定长参数</h3>
+<p>你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述 2 种参数不同，声明时不会命名。基本语法如下：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-s1">function_name</span>([<span class="pl-s1">formal_args</span>,] <span class="pl-c1">*</span><span class="pl-s1">var_args_tuple</span> ):
+    "<span class="pl-s1">函数_文档字符串</span>"   
+	<span class="pl-s1">function_suite</span>
+    <span class="pl-k">return</span> [<span class="pl-s1">expression</span>]</pre></div>
+<p>加了星号 ***** 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">print_info</span>( <span class="pl-s1">arg1</span>, <span class="pl-c1">*</span><span class="pl-s1">vartuple</span> ):
+    <span class="pl-s">"打印任何传入的参数"</span>
+    <span class="pl-en">print</span>(<span class="pl-s">"输出: "</span>)  
+    <span class="pl-en">print</span>(<span class="pl-s1">arg1</span>)   
+    <span class="pl-en">print</span>(<span class="pl-s1">vartuple</span>)
+    
+    <span class="pl-c"># 调用print_info 函数print_info( 100, 90, 80 )</span></pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">输出</span>:
+<span class="pl-c1">100</span>
+(<span class="pl-c1">90</span>, <span class="pl-c1">80</span>)</pre></div>
+<p>如果在函数调用时没有指定参数，它就是一个空元组。我们也可以不向函数传递未命名的变量。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">print_info</span>( <span class="pl-s1">arg1</span>, <span class="pl-c1">*</span><span class="pl-s1">vartuple</span> ):  
+    <span class="pl-s">"打印任何传入的参数"</span> 
+    <span class="pl-en">print</span>(<span class="pl-s">"输出: "</span>)  
+    <span class="pl-en">print</span>(<span class="pl-s1">arg1</span>) 
+    <span class="pl-k">for</span> <span class="pl-s1">var</span> <span class="pl-c1">in</span> <span class="pl-s1">vartuple</span>:  
+        <span class="pl-en">print</span> (<span class="pl-s1">var</span>)  
+        <span class="pl-k">return</span>
+    
+<span class="pl-c"># 调用printinfo 函数</span>
+<span class="pl-en">print_info</span>( <span class="pl-c1">100</span> )
+<span class="pl-en">print_info</span>( <span class="pl-c1">90</span>, <span class="pl-c1">80</span>, <span class="pl-c1">70</span> )</pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">输出</span>:<span class="pl-c1">100</span>
+<span class="pl-s1">输出</span>:
+<span class="pl-c1">90</span>
+<span class="pl-c1">80</span>
+<span class="pl-c1">70</span></pre></div>
+<p>还有一种就是参数带两个星号 ******基本语法如下：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-s1">function_name</span>([<span class="pl-s1">formal_args</span>,] <span class="pl-c1">**</span><span class="pl-s1">var_args_dict</span> ):  
+    "<span class="pl-s1">函数_文档字符串</span>" 
+	<span class="pl-s1">function_suite</span>
+    <span class="pl-k">return</span> [<span class="pl-s1">expression</span>]</pre></div>
+<p>加了两个星号 *<strong>*</strong> 的参数会以字典的形式导入。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">print_info</span>( <span class="pl-s1">arg1</span>, <span class="pl-c1">**</span><span class="pl-s1">vardict</span> ):  
+    <span class="pl-s">"打印任何传入的参数"</span>  
+    <span class="pl-en">print</span>(<span class="pl-s">"输出: "</span>)  
+    <span class="pl-en">print</span>(<span class="pl-s1">arg1</span>)  
+    <span class="pl-en">print</span>(<span class="pl-s1">vardict</span>)
+    
+<span class="pl-c"># 调用print_info 函数</span>
+<span class="pl-en">print_info</span>(<span class="pl-c1">1</span>, <span class="pl-s1">a</span><span class="pl-c1">=</span><span class="pl-c1">2</span>,<span class="pl-s1">b</span><span class="pl-c1">=</span><span class="pl-c1">3</span>)</pre></div>
+<p>以上实例输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">输出</span>: <span class="pl-c1">1</span>
+{<span class="pl-s">'a'</span>: <span class="pl-c1">2</span>, <span class="pl-s">'b'</span>: <span class="pl-c1">3</span>}</pre></div>
+<p>声明函数时，参数中星号 ***** 可以单独出现，例如:</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">f</span>(<span class="pl-s1">a</span>,<span class="pl-s1">b</span>,<span class="pl-c1">*</span>,<span class="pl-s1">c</span>):  
+    <span class="pl-k">return</span> <span class="pl-s1">a</span><span class="pl-c1">+</span><span class="pl-s1">b</span><span class="pl-c1">+</span><span class="pl-s1">c</span></pre></div>
+<p>如果单独出现星号 ***** 后的参数必须用关键字传入。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">f</span>(<span class="pl-s1">a</span>,<span class="pl-s1">b</span>,<span class="pl-c1">*</span>,<span class="pl-s1">c</span>):  
+    <span class="pl-k">return</span> <span class="pl-s1">a</span><span class="pl-c1">+</span><span class="pl-s1">b</span><span class="pl-c1">+</span><span class="pl-s1">c</span>
+<span class="pl-en">f</span>(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-s1">c</span><span class="pl-c1">=</span><span class="pl-c1">3</span>) <span class="pl-c"># 正常</span>
+<span class="pl-en">f</span>(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>)   <span class="pl-c"># 报错</span></pre></div>
+<h3>迭代器(iterator)与生成器(generator)</h3>
+<h4>迭代器</h4>
+<p>迭代是Python最强大的功能之一，是访问集合元素的一种方式。</p>
+<p>迭代器是一个可以记住遍历的位置的对象。</p>
+<p>迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。</p>
+<p>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong>。</p>
+<p>字符串，列表或元组对象都可用于创建迭代器：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">list</span><span class="pl-c1">=</span>[<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>]
+<span class="pl-s1">it</span> <span class="pl-c1">=</span> <span class="pl-en">iter</span>(<span class="pl-s1">list</span>)    <span class="pl-c"># 创建迭代器对象</span>
+<span class="pl-en">print</span>(<span class="pl-en">next</span>(<span class="pl-s1">it</span>))   <span class="pl-c"># 输出迭代器的下一个元素1</span>
+<span class="pl-en">print</span>(<span class="pl-en">next</span>(<span class="pl-s1">it</span>))   <span class="pl-c"># 输出迭代器的下一个元素2</span></pre></div>
+<p>迭代器对象可以使用常规for语句进行遍历：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">l</span><span class="pl-c1">=</span>[<span class="pl-s">'Baidu'</span>, <span class="pl-s">'ShowMeAI'</span>, <span class="pl-s">'google'</span>, <span class="pl-s">'ByteDance'</span>]
+<span class="pl-s1">it</span> <span class="pl-c1">=</span> <span class="pl-en">iter</span>(<span class="pl-s1">l</span>)    <span class="pl-c"># 创建迭代器对象</span>
+<span class="pl-k">for</span> <span class="pl-s1">x</span> <span class="pl-c1">in</span> <span class="pl-s1">it</span>: 
+	<span class="pl-en">print</span>(<span class="pl-s1">x</span>)</pre></div>
+<p>执行以上程序，输出结果如下：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">Baidu</span>
+<span class="pl-v">ShowMeAI</span>
+<span class="pl-s1">google</span>
+<span class="pl-v">ByteDance</span></pre></div>
+<p>也可以使用 <code class="notranslate">next()</code> 函数</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">list</span><span class="pl-c1">=</span>[<span class="pl-s">'Baidu'</span>, <span class="pl-s">'ShowMeAI'</span>, <span class="pl-s">'google'</span>, <span class="pl-s">'ByteDance'</span>]
+<span class="pl-s1">it</span> <span class="pl-c1">=</span> <span class="pl-en">iter</span>(<span class="pl-s1">list</span>)    <span class="pl-c"># 创建迭代器对象</span>
+<span class="pl-k">while</span> <span class="pl-c1">True</span>:    
+    <span class="pl-k">try</span>:      
+        <span class="pl-en">print</span>(<span class="pl-en">next</span>(<span class="pl-s1">it</span>))    
+    <span class="pl-k">except</span> <span class="pl-v">StopIteration</span>:    
+        <span class="pl-k">break</span>
+       </pre></div>
+<h4>StopIteration</h4>
+<p>StopIteration 异常用于标识迭代的完成，防止出现无限循环的情况，在 <strong>next</strong>() 方法中我们可以设置在完成指定循环次数后触发 StopIteration 异常来结束迭代。</p>
+<p>在 10 次迭代后停止执行：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">IterNumbers</span>:
+  <span class="pl-k">def</span> <span class="pl-en">__iter__</span>(<span class="pl-s1">self</span>):
+    <span class="pl-s1">self</span>.<span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>
+    <span class="pl-k">return</span> <span class="pl-s1">self</span>
+  <span class="pl-k">def</span> <span class="pl-en">__next__</span>(<span class="pl-s1">self</span>):
+    <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">a</span> <span class="pl-c1">&lt;=</span> <span class="pl-c1">10</span>:
+      <span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">a</span>
+      <span class="pl-s1">self</span>.<span class="pl-s1">a</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+      <span class="pl-k">return</span> <span class="pl-s1">x</span>
+    <span class="pl-k">else</span>:
+      <span class="pl-k">raise</span> <span class="pl-v">StopIteration</span>
+<span class="pl-s1">num_class</span> <span class="pl-c1">=</span> <span class="pl-v">IterNumbers</span>()
+<span class="pl-s1">iter_num</span> <span class="pl-c1">=</span> <span class="pl-en">iter</span>(<span class="pl-s1">num_class</span>)
+<span class="pl-k">for</span> <span class="pl-s1">x</span> <span class="pl-c1">in</span> <span class="pl-s1">iter_num</span>:
+  <span class="pl-en">print</span>(<span class="pl-s1">x</span>)</pre></div>
+<p>输出结果：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">1</span>
+<span class="pl-c1">2</span>
+<span class="pl-c1">3</span>
+<span class="pl-c1">4</span>
+<span class="pl-c1">5</span>
+<span class="pl-c1">6</span>
+<span class="pl-c1">7</span>
+<span class="pl-c1">8</span>
+<span class="pl-c1">9</span>
+<span class="pl-c1">10</span>
+<span class="pl-c1">&gt;</span> </pre></div>
+<h4>生成器</h4>
+<p>在 Python 中，使用了 yield 的函数被称为生成器（generator）。</p>
+<p>跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作。</p>
+<p>调用一个生成器函数，返回的是一个迭代器对象。</p>
+<p>使用yield实现斐波那契：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">fibonacci</span>(<span class="pl-s1">n</span>): <span class="pl-c"># 生成器函数 - 斐波那契</span>
+    <span class="pl-s1">a</span>, <span class="pl-s1">b</span>, <span class="pl-s1">counter</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">0</span>
+    <span class="pl-k">while</span> <span class="pl-c1">True</span>:
+        <span class="pl-k">if</span> (<span class="pl-s1">counter</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">n</span>): 
+            <span class="pl-k">return</span>
+        <span class="pl-k">yield</span> <span class="pl-s1">a</span>
+        <span class="pl-s1">a</span>, <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">b</span>, <span class="pl-s1">a</span> <span class="pl-c1">+</span> <span class="pl-s1">b</span>
+        <span class="pl-s1">counter</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+<span class="pl-s1">f</span> <span class="pl-c1">=</span> <span class="pl-en">fibonacci</span>(<span class="pl-c1">10</span>) <span class="pl-c"># f 是一个迭代器，由生成器返回生成</span>
+<span class="pl-k">while</span> <span class="pl-c1">True</span>:
+    <span class="pl-k">try</span>:
+        <span class="pl-en">print</span>(<span class="pl-en">next</span>(<span class="pl-s1">f</span>))
+    <span class="pl-k">except</span> <span class="pl-v">StopIteration</span>:
+        <span class="pl-k">break</span>
+        
+<span class="pl-c"># 输出：</span>
+<span class="pl-c1">0</span>
+<span class="pl-c1">1</span>
+<span class="pl-c1">1</span>
+<span class="pl-c1">2</span>
+<span class="pl-c1">3</span>
+<span class="pl-c1">5</span>
+<span class="pl-c1">8</span>
+<span class="pl-c1">13</span>
+<span class="pl-c1">21</span>
+<span class="pl-c1">34</span>
+<span class="pl-c1">55</span>
+<span class="pl-c1">&gt;</span> </pre></div></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://aneverspring.github.io/evenstar/">Even Star</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("08/09/2024"!=""){
+    var startSite=new Date("08/09/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>
+
+</html>

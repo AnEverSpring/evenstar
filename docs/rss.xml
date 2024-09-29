@@ -1,5 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:06:46 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>ISLR笔记</title><link>https://aneverspring.github.io/evenstar//post/ISLR-bi-ji.html</link><description># ISLR&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:13:48 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>Python基础语法</title><link>https://aneverspring.github.io/evenstar//post/Python-ji-chu-yu-fa.html</link><description>&#13;
+&#13;
+# Python基础语法&#13;
+&#13;
+### 运算符&#13;
+&#13;
+&gt; is 与 == 区别：&#13;
+&gt; is 用于判断两个变量引用对象是否为同一个(同一块内存空间)， == 用于判断引用变量的值是否相等。</description><guid isPermaLink="true">https://aneverspring.github.io/evenstar//post/Python-ji-chu-yu-fa.html</guid><pubDate>Sun, 29 Sep 2024 12:13:23 +0000</pubDate></item><item><title>ISLR笔记</title><link>https://aneverspring.github.io/evenstar//post/ISLR-bi-ji.html</link><description># ISLR&#13;
 &#13;
 ### introduction&#13;
 &#13;
