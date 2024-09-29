@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 相交之道：交叉领域中的数据科学与统计
+
+#### 																														——读《十字路口的统计学》后感
+
+#### （一）前提：数据科学、统计学与机器学习交叉
+
+> 这完全依赖于我们
+
+随着大规模数据的持续增长和快速变化，数据科学作为一种跨领域发现方法展现出了其无可替代的价值，正如文中所说，“数据科学已将自身展示为一种自然的跨领域发现方法”。">
+<meta property="og:title" content="相交之道：交叉领域中的数据科学与统计">
+<meta property="og:description" content="# 相交之道：交叉领域中的数据科学与统计
+
+#### 																														——读《十字路口的统计学》后感
+
+#### （一）前提：数据科学、统计学与机器学习交叉
+
+> 这完全依赖于我们
+
+随着大规模数据的持续增长和快速变化，数据科学作为一种跨领域发现方法展现出了其无可替代的价值，正如文中所说，“数据科学已将自身展示为一种自然的跨领域发现方法”。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aneverspring.github.io/evenstar//post/xiang-jiao-zhi-dao-%EF%BC%9A-jiao-cha-ling-yu-zhong-de-shu-ju-ke-xue-yu-tong-ji.html">
+<meta property="og:image" content="https://sm.ms/image/DVHlFwPxga64KZX">
+<title>相交之道：交叉领域中的数据科学与统计</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">相交之道：交叉领域中的数据科学与统计</h1>
+<div class="title-right">
+    <a href="https://aneverspring.github.io/evenstar/" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/AnEverSpring/evenstar/issues/9" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>相交之道：交叉领域中的数据科学与统计</h1>
+<h4>——读《十字路口的统计学》后感</h4>
+<h4>（一）前提：数据科学、统计学与机器学习交叉</h4>
+<blockquote>
+<p>这完全依赖于我们</p>
+</blockquote>
+<p>随着大规模数据的持续增长和快速变化，数据科学作为一种跨领域发现方法展现出了其无可替代的价值，正如文中所说，“数据科学已将自身展示为一种自然的跨领域发现方法”。而在当今数据科学时代，<strong>统计理论</strong>的重要性愈发凸显。</p>
+<p>统计数据与应用的紧密联系必须继续加强，这些应用包括来自物理科学、社会科学、医学、金融等的各种数据问题，其核心价值在于它如何促进科学和社会的理解与发现，对于统计和数据科学而言，持续证明其对现实世界问题的价值很重要。</p>
+<p>同时，在数据科学领域中，<strong>“机器学习”</strong>（ML）扮演着及其重要的角色。机器学习算法的典型流程为建立模型、训练与预测，从而逐步提高自身的准确性，更好地完成任务。</p>
+<blockquote>
+<p>“机器学习无法从无到有......它的作用是从更少的东西中获得更多。” ——华盛顿大学Pedro Domingo博士</p>
+</blockquote>
+<p>数据科学、机器学习和统计虽然有着基本相同的目标，但它们从不同却又交叠的角度拓宽着方向。统计学侧重于不确定性下的推理和决策过程，而机器学习则着眼于构建自主学习系统。这些领域之间的交互和协作日益增多，为解决现实世界问题提供了更多可能性。</p>
+<p>例如，数据挖掘即利用机器学习算法，从数据中得到有价值的信息，通过统计模型进行评估选择，帮助企业或个人做出决策。而在机器学习中的”训练“过程中，不确定性的统计量化在确认分析和减少错误发现的风险中起着至关重要的作用。三者在数据科学这一平台上发生着交互融合，并且还需要更多更深度的交流。</p>
+<p>而这，正是我们正在致力突破的领域。身为数据科学专业的学习者，了解并掌握这一切是目前清晰任重的学习方向，必须不断学习和探索，在前人的基础上继续拓宽道路。</p>
+<h4>（二）挑战：跨学科研究中的数据科学实践</h4>
+<blockquote>
+<p>所谓 “应用”，不仅仅意味着要使用现有的方法来解决问题，更重要的是，我们的目标是运用统计理论和原理来开发新的及在实际中有用的方法。</p>
+</blockquote>
+<blockquote>
+<p>所有模型都是错误的，但有些模型是有用的。——George Box</p>
+</blockquote>
+<p>在很大程度上，有价值的学术成就将建立在在<strong>实践和跨学科研究</strong>的基础上。</p>
+<p>而大部分实践研究都必须有客观的数据支撑，因此数据分析在实践方面不可或缺。文中提出了很多在实践中将遇到的挑战，令我印象深刻的有以下三点：</p>
+<ol>
+<li>
+<p>从理论角度，机器学习中的模型和算法可以很好地解决数据的处理和分析等问题，但简单和可解释的模型通常是黄金标准，对于现代应用程序而言，现实往往过于复杂，以至于<strong>无法用简单的模型来描述</strong>。</p>
+</li>
+<li>
+<p>由于计算机本身有限的存储和内存，完整存储或分析海量数据集不可能实现，计算机科学家为此提出了许多另辟蹊径的道路来以有限的内存进行存储和查询。除此之外，计算效率约束也是一个令人头疼的问题，到目前为止，我们还没有一个统一而通用的统计框架来解决统计和计算效率之间的关系和平衡。</p>
+</li>
+<li>
+<p>最重要的一点，真实与模拟之间往往存在着误差和复杂的因果关系，我们如何量化与因果效应估计相关的真实<strong>不确定性</strong>，如何利用低精度，低偏差数据和高精度，中等偏差数据的优势，如何将这些准实验设备用于有关大型机制模型的复杂因果假设等，将是数据科学在理论与实践中需要解决的重要问题。</p>
+</li>
+</ol>
+<h4>（三）能力：专业必备技能</h4>
+<blockquote>
+<p>我们的专业人士必须认识到，在新时代，我们的主要职责是<strong>开发统计和数据科学中的算法 / 方法和相关理论</strong>，以满足对科学，工程学和社会产生最大影响的<strong>数据分析需求</strong>。</p>
+</blockquote>
+<p>文中列出的核心领域中，除去统计、数学、编程等基本硬件要求，交流写作、以数据为中心的批判思维能力以及对实验的评估能力等软件要求同样重要。这些能力塑造出全面精通统计、计算、批判性思维、沟通、建模等技能，并能综合运用这些能力解决复杂的科学和商业问题的数据科学家。我想，这就是时代对数据科学专业学生的期待。</p>
+<p>同时，学术成就的评估方式令我产生了思考。文中指出，传统的学术评估方法过于狭窄，主要关注出版物的数量，而不考虑数据科学领域的多样性和实践价值。因此，为了更全面地评估数据科学专业人士的学术成就，评估方法应该考虑到专业人士在核心领域的掌握程度，如统计基础、计算能力、数据建模、重视协作经验和技能的发展。这样的评估方式要求我们更深层次地理解数据科学的本质，并落实到实践，而不是纸上谈兵夸夸其谈。</p>
+<h4>（四）小结</h4>
+<p>整篇文章看下来，重中之重为**“实践”**二字。</p>
+<p>通过对数据科学、统计学和机器学习交叉领域的深入探讨，我们不仅拓宽了视野，也揭示了这一领域面临的挑战和发展方向。在这个信息爆炸的时代，数据科学与统计正站在十字路口，面对着巨大的机遇和挑战。</p>
+<p>我们深入了解了数据科学的核心：统计学、机器学习、实践研究等领域之间的交叉点。这不仅仅是知识的交织，更是一种思维的碰撞，为我们带来了更深层次的理解和洞察。然而，这只是开始，未来的发展依然充满了未知数。</p>
+<p>在未来的道路上，我们需要不断挑战现有的模型，寻求更简单、可解释的方法。计算效率和存储问题需要我们寻找创新性的解决方案，推动硬件和软件技术的发展。同时，我们要持续关注不确定性的量化与处理，为真实与模拟之间的差异提供更精准的解释。但更为重要的是，我们需要加强跨学科的合作，将数据科学与其他领域深度融合。</p>
+<p>在这个数据科学的新时代，让我们携手迎接未来的挑战，努力成为能够在十字路口中发挥作用的数据科学专业人士，承担起自己为科学、工程学和社会做出自己的贡献。只有在理论和实践相结合的道路上，我们才能真正发现知识的奥秘，推动数据科学领域的不断前行。正如统计学家Yogi Berra所说，**“在理论上，理论和实践没有区别；但在实践中，是有的。" **</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://aneverspring.github.io/evenstar/">Even Star</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("08/09/2024"!=""){
+    var startSite=new Date("08/09/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>
+
+</html>

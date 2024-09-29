@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:17:00 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>ML notebook</title><link>https://aneverspring.github.io/evenstar//post/ML%20notebook.html</link><description># 机器学习&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:18:50 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>相交之道：交叉领域中的数据科学与统计</title><link>https://aneverspring.github.io/evenstar//post/xiang-jiao-zhi-dao-%EF%BC%9A-jiao-cha-ling-yu-zhong-de-shu-ju-ke-xue-yu-tong-ji.html</link><description># 相交之道：交叉领域中的数据科学与统计&#13;
+&#13;
+#### 																														——读《十字路口的统计学》后感&#13;
+&#13;
+#### （一）前提：数据科学、统计学与机器学习交叉&#13;
+&#13;
+&gt; 这完全依赖于我们&#13;
+&#13;
+随着大规模数据的持续增长和快速变化，数据科学作为一种跨领域发现方法展现出了其无可替代的价值，正如文中所说，“数据科学已将自身展示为一种自然的跨领域发现方法”。</description><guid isPermaLink="true">https://aneverspring.github.io/evenstar//post/xiang-jiao-zhi-dao-%EF%BC%9A-jiao-cha-ling-yu-zhong-de-shu-ju-ke-xue-yu-tong-ji.html</guid><pubDate>Sun, 29 Sep 2024 12:18:27 +0000</pubDate></item><item><title>ML notebook</title><link>https://aneverspring.github.io/evenstar//post/ML%20notebook.html</link><description># 机器学习&#13;
 &#13;
 ## 基础知识&#13;
 &#13;
