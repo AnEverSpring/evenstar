@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>（剪裁）.jpeg</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Wed, 11 Sep 2024 02:27:25 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>第一篇个人博客</title><link>https://aneverspring.github.io/evenstar//post/di-yi-pian-ge-ren-bo-ke.html</link><description># Hello Blog World !&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>（剪裁）.jpeg</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 11:22:49 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>多模态分析</title><link>https://aneverspring.github.io/evenstar//post/duo-mo-tai-fen-xi.html</link><description># 多模态分析(Multimodal Analysis)&#13;
+&#13;
+&#13;
+### 一、定义&#13;
+&#13;
+模态是指事物发生或存在的方式，多模态是指两个或者两个以上模态形式的组合。</description><guid isPermaLink="true">https://aneverspring.github.io/evenstar//post/duo-mo-tai-fen-xi.html</guid><pubDate>Sun, 29 Sep 2024 11:19:48 +0000</pubDate></item><item><title>第一篇个人博客</title><link>https://aneverspring.github.io/evenstar//post/di-yi-pian-ge-ren-bo-ke.html</link><description># Hello Blog World !&#13;
 &#13;
 &#13;
 。</description><guid isPermaLink="true">https://aneverspring.github.io/evenstar//post/di-yi-pian-ge-ren-bo-ke.html</guid><pubDate>Sun, 08 Sep 2024 09:45:36 +0000</pubDate></item></channel></rss>
