@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="状态信息：
+
+登录——>发送请求，鉴权，后续都要带上用户名及密码
+
+但是使用cookie之后，前端发送请求，response:set-cookie
+
+cookie保存在浏览器端，维持了用户的登录状态
+
+OK：储存在客户端，帮助在客户端和服务器之间维护状态信息
+
+NO：安全风险：有被串改风险，容量限制4kb，可用限制：用户可能禁用
+
+session
+
+请求——>response-header:set-cookie(session id)
+
+会自动在cookie当中存入当前的session ID（当前唯一id）
+
+OK：安全性高，容量大可以保存对象
+
+NO：占用服务器资源，扩展性差，依然需要依赖cookie，跨域限制
+
+jwt：生成token，header（私钥，加密方式，算法）+payload数据载体+signature密钥（header+payload）
+
+base64解码，jason生成密码
+
+
+
+### 后端
+
+1. 用户登录成功之后，返回token凭证
+2. 后续再来，认证组件，保证凭证正确+role
+
+
+
+3. 权限校验
+
+   - 在每个视图中role，判断是否有权限访问
+
+   ```python
+   class UserView(APIView):
+   	def post(self,request):
+   		if request.user.role == 'admin':
+   			pass
+   		else:
+   			pass
+   ```
+
+   - 基于drf的权限组件
+
+     ```python
+     class MinePermission():
+         
+         def has_permission(...):
+             request.method
+             if request.user.role == 'admin':
+                 pass
+             else:
+                 pass
+             
+             
+     class UserView(APIView):
+         permission_class = [MinePermission]
+         
+     /api/user/
+     ```
+
+   - 基于配置+权限组件
+
+     ```python
+     path('api/',xxxx,name = 'info'),
+     
+     router = routers.SimpleRouter()
+     router.register(r'api/users',views.UserView,base)
+     
+     
+     settings.py
+     	permission = {
+     		'admin':{
+     			'info':['GET','POST','PUT'],
+                 'oder':['GET','POST','PUT'],
+                 'role':['GET','POST','PUT'],
+     		},
+             'user':{},
+             'manager':{}
+     	}
+     ```
+
+
+
+
+- app
+  - app
+    - templates （MVC中的V，存放模板文件）
+    - static （存放静态文件，包括css和js文件等）
+    - models （映射数据库表结构）
+    - utils (通用功能模块)
+    - __ init __.py （模块初始化文件）
+    - views.py （MVC中的C，存放视图函数）
+    - config.py （配置文件）
+
+
+
+- manage.py （数据库迁移文件）
+- serve.py （项目启动文件）
+
+**1. 路由：**所谓路由，就是处理URL和函数之间关系的程序，Flask中也是对URL规则进行统一管理的，使用@app.route修饰器将一个函数注册为路由。">
+<meta property="og:title" content="后端构建">
+<meta property="og:description" content="状态信息：
+
+登录——>发送请求，鉴权，后续都要带上用户名及密码
+
+但是使用cookie之后，前端发送请求，response:set-cookie
+
+cookie保存在浏览器端，维持了用户的登录状态
+
+OK：储存在客户端，帮助在客户端和服务器之间维护状态信息
+
+NO：安全风险：有被串改风险，容量限制4kb，可用限制：用户可能禁用
+
+session
+
+请求——>response-header:set-cookie(session id)
+
+会自动在cookie当中存入当前的session ID（当前唯一id）
+
+OK：安全性高，容量大可以保存对象
+
+NO：占用服务器资源，扩展性差，依然需要依赖cookie，跨域限制
+
+jwt：生成token，header（私钥，加密方式，算法）+payload数据载体+signature密钥（header+payload）
+
+base64解码，jason生成密码
+
+
+
+### 后端
+
+1. 用户登录成功之后，返回token凭证
+2. 后续再来，认证组件，保证凭证正确+role
+
+
+
+3. 权限校验
+
+   - 在每个视图中role，判断是否有权限访问
+
+   ```python
+   class UserView(APIView):
+   	def post(self,request):
+   		if request.user.role == 'admin':
+   			pass
+   		else:
+   			pass
+   ```
+
+   - 基于drf的权限组件
+
+     ```python
+     class MinePermission():
+         
+         def has_permission(...):
+             request.method
+             if request.user.role == 'admin':
+                 pass
+             else:
+                 pass
+             
+             
+     class UserView(APIView):
+         permission_class = [MinePermission]
+         
+     /api/user/
+     ```
+
+   - 基于配置+权限组件
+
+     ```python
+     path('api/',xxxx,name = 'info'),
+     
+     router = routers.SimpleRouter()
+     router.register(r'api/users',views.UserView,base)
+     
+     
+     settings.py
+     	permission = {
+     		'admin':{
+     			'info':['GET','POST','PUT'],
+                 'oder':['GET','POST','PUT'],
+                 'role':['GET','POST','PUT'],
+     		},
+             'user':{},
+             'manager':{}
+     	}
+     ```
+
+
+
+
+- app
+  - app
+    - templates （MVC中的V，存放模板文件）
+    - static （存放静态文件，包括css和js文件等）
+    - models （映射数据库表结构）
+    - utils (通用功能模块)
+    - __ init __.py （模块初始化文件）
+    - views.py （MVC中的C，存放视图函数）
+    - config.py （配置文件）
+
+
+
+- manage.py （数据库迁移文件）
+- serve.py （项目启动文件）
+
+**1. 路由：**所谓路由，就是处理URL和函数之间关系的程序，Flask中也是对URL规则进行统一管理的，使用@app.route修饰器将一个函数注册为路由。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aneverspring.github.io/evenstar//post/hou-duan-gou-jian.html">
+<meta property="og:image" content="https://sm.ms/image/DVHlFwPxga64KZX">
+<title>后端构建</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">后端构建</h1>
+<div class="title-right">
+    <a href="https://aneverspring.github.io/evenstar/" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/AnEverSpring/evenstar/issues/10" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>状态信息：</p>
+<p>登录——&gt;发送请求，鉴权，后续都要带上用户名及密码</p>
+<p>但是使用cookie之后，前端发送请求，response:set-cookie</p>
+<p>cookie保存在浏览器端，维持了用户的登录状态</p>
+<p>OK：储存在客户端，帮助在客户端和服务器之间维护状态信息</p>
+<p>NO：安全风险：有被串改风险，容量限制4kb，可用限制：用户可能禁用</p>
+<p>session</p>
+<p>请求——&gt;response-header:set-cookie(session id)</p>
+<p>会自动在cookie当中存入当前的session ID（当前唯一id）</p>
+<p>OK：安全性高，容量大可以保存对象</p>
+<p>NO：占用服务器资源，扩展性差，依然需要依赖cookie，跨域限制</p>
+<p>jwt：生成token，header（私钥，加密方式，算法）+payload数据载体+signature密钥（header+payload）</p>
+<p>base64解码，jason生成密码</p>
+<h3>后端</h3>
+<ol>
+<li>
+<p>用户登录成功之后，返回token凭证</p>
+</li>
+<li>
+<p>后续再来，认证组件，保证凭证正确+role</p>
+</li>
+<li>
+<p>权限校验</p>
+<ul>
+<li>在每个视图中role，判断是否有权限访问</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">UserView</span>(<span class="pl-v">APIView</span>):
+	<span class="pl-k">def</span> <span class="pl-en">post</span>(<span class="pl-s1">self</span>,<span class="pl-s1">request</span>):
+		<span class="pl-k">if</span> <span class="pl-s1">request</span>.<span class="pl-s1">user</span>.<span class="pl-s1">role</span> <span class="pl-c1">==</span> <span class="pl-s">'admin'</span>:
+			<span class="pl-k">pass</span>
+		<span class="pl-k">else</span>:
+			<span class="pl-k">pass</span></pre></div>
+<ul>
+<li>
+<p>基于drf的权限组件</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">MinePermission</span>():
+    
+    <span class="pl-k">def</span> <span class="pl-en">has_permission</span>(...):
+        <span class="pl-s1">request</span>.<span class="pl-s1">method</span>
+        <span class="pl-k">if</span> <span class="pl-s1">request</span>.<span class="pl-s1">user</span>.<span class="pl-s1">role</span> <span class="pl-c1">==</span> <span class="pl-s">'admin'</span>:
+            <span class="pl-k">pass</span>
+        <span class="pl-k">else</span>:
+            <span class="pl-k">pass</span>
+        
+        
+<span class="pl-k">class</span> <span class="pl-v">UserView</span>(<span class="pl-v">APIView</span>):
+    <span class="pl-s1">permission_class</span> <span class="pl-c1">=</span> [<span class="pl-v">MinePermission</span>]
+    
+<span class="pl-c1">/</span><span class="pl-s1">api</span><span class="pl-c1">/</span><span class="pl-s1">user</span><span class="pl-c1">/</span></pre></div>
+</li>
+<li>
+<p>基于配置+权限组件</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">path</span>(<span class="pl-s">'api/'</span>,<span class="pl-s1">xxxx</span>,<span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-s">"info"</span>),
+
+<span class="pl-s1">router</span> <span class="pl-c1">=</span> <span class="pl-s1">routers</span>.<span class="pl-v">SimpleRouter</span>()
+<span class="pl-s1">router</span>.<span class="pl-en">register</span>(<span class="pl-s">r'api/users'</span>,<span class="pl-s1">views</span>.<span class="pl-v">UserView</span>,<span class="pl-s1">base</span>)
+
+
+<span class="pl-s1">settings</span>.<span class="pl-s1">py</span>
+	<span class="pl-s1">permission</span> <span class="pl-c1">=</span> {
+		<span class="pl-s">'admin'</span>:{
+			<span class="pl-s">'info'</span>:[<span class="pl-s">"GET"</span>,<span class="pl-s">"POST"</span>,<span class="pl-s">"PUT"</span>],
+            <span class="pl-s">'oder'</span>:[<span class="pl-s">"GET"</span>,<span class="pl-s">"POST"</span>,<span class="pl-s">"PUT"</span>],
+            <span class="pl-s">'role'</span>:[<span class="pl-s">"GET"</span>,<span class="pl-s">"POST"</span>,<span class="pl-s">"PUT"</span>],
+		},
+        <span class="pl-s">'user'</span>:{},
+        <span class="pl-s">'manager'</span>:{}
+	}</pre></div>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>app</p>
+<ul>
+<li>app
+<ul>
+<li>templates （MVC中的V，存放模板文件）</li>
+<li>static （存放静态文件，包括css和js文件等）</li>
+<li>models （映射数据库表结构）</li>
+<li>utils (通用功能模块)</li>
+<li>__ init __.py （模块初始化文件）</li>
+<li>views.py （MVC中的C，存放视图函数）</li>
+<li>config.py （配置文件）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>manage.py （数据库迁移文件）</p>
+</li>
+<li>
+<p>serve.py （项目启动文件）</p>
+</li>
+</ul>
+<p>**1. 路由：**所谓路由，就是处理URL和函数之间关系的程序，Flask中也是对URL规则进行统一管理的，使用@app.route修饰器将一个函数注册为路由。</p>
+<p><strong>3. sqlalchemy：</strong></p>
+<p>SQLAlchemy是Python中最有名的的ORM框架，所谓的ORM（Object-Relational Mapping），就是将关系数据库的表结构映射到对象上（程序中的类），可以将数据库表中的一行记录与一个对象互相做自动转换。</p>
+<p>它支持多种数据库引擎，封装了各种数据库引擎（SQLite，MySQL，Postgresql，Oracle等），对于不同的数据库，只需要做简单的修改，工作量大大减少。</p>
+<p>在Flask中，可以使用Flask-SQLAlchemy管理数据库，使用命令安装：</p>
+<pre lang="text" class="notranslate"><code class="notranslate">pip install flask-sqlalchemy
+</code></pre>
+<p>Flask-Principal 是一个 Flask 扩展，它提供了用户身份验证和授权的功能。以下是如何使用 Flask-Principal 进行用户身份验证和授权的基本步骤：</p>
+<ol>
+<li>
+<p><strong>安装 Flask-Principal</strong>：<br>
+使用 pip 安装 Flask-Principal 扩展。</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pip install Flask-Principal</pre></div>
+</li>
+<li>
+<p><strong>初始化 Flask 应用</strong>：<br>
+创建 Flask 应用实例。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-v">Flask</span>
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">Flask</span>(<span class="pl-s1">__name__</span>)</pre></div>
+</li>
+<li>
+<p><strong>配置 Flask-Principal</strong>：<br>
+创建 Flask-Principal 实例并配置到 Flask 应用中。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Principal</span>
+<span class="pl-s1">principal</span> <span class="pl-c1">=</span> <span class="pl-v">Principal</span>(<span class="pl-s1">app</span>)</pre></div>
+</li>
+<li>
+<p><strong>定义用户加载器</strong>：<br>
+实现一个用户加载器函数，该函数将被 Flask-Principal 用来加载用户身份。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/login'</span>, <span class="pl-s1">methods</span><span class="pl-c1">=</span>[<span class="pl-s">'GET'</span>, <span class="pl-s">'POST'</span>])</span>
+<span class="pl-k">def</span> <span class="pl-en">login</span>():
+    <span class="pl-k">if</span> <span class="pl-s1">request</span>.<span class="pl-s1">method</span> <span class="pl-c1">==</span> <span class="pl-s">'POST'</span>:
+        <span class="pl-s1">username</span> <span class="pl-c1">=</span> <span class="pl-s1">request</span>.<span class="pl-s1">form</span>[<span class="pl-s">'username'</span>]
+        <span class="pl-s1">password</span> <span class="pl-c1">=</span> <span class="pl-s1">request</span>.<span class="pl-s1">form</span>[<span class="pl-s">'password'</span>]
+        <span class="pl-c"># 这里应该有逻辑来验证用户名和密码</span>
+        <span class="pl-c"># 例如，查询数据库</span>
+        <span class="pl-k">if</span> <span class="pl-en">valid_user</span>(<span class="pl-s1">username</span>, <span class="pl-s1">password</span>):
+            <span class="pl-c"># 创建一个身份并发送 identity-changed 信号</span>
+            <span class="pl-s1">identity</span> <span class="pl-c1">=</span> <span class="pl-v">Identity</span>(<span class="pl-s1">username</span>)
+            <span class="pl-s1">identity_changed</span>.<span class="pl-en">send</span>(<span class="pl-s1">app</span>, <span class="pl-s1">identity</span><span class="pl-c1">=</span><span class="pl-s1">identity</span>)
+            <span class="pl-k">return</span> <span class="pl-s">'Logged in successfully'</span></pre></div>
+</li>
+<li>
+<p><strong>处理身份验证信号</strong>：<br>
+使用 <code class="notranslate">identity_changed</code> 信号来处理身份验证后的逻辑，例如保存身份到会话。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_changed</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_changed</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_changed</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-c"># 这里可以设置用户会话，例如保存用户ID到 session</span>
+    <span class="pl-s1">session</span>[<span class="pl-s">'identity.id'</span>] <span class="pl-c1">=</span> <span class="pl-s1">identity</span>.<span class="pl-s1">id</span></pre></div>
+</li>
+<li>
+<p><strong>定义资源的访问权限</strong>：<br>
+创建权限对象，定义访问特定资源所需的权限。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Permission</span>, <span class="pl-v">RoleNeed</span>
+
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>))
+<span class="pl-s1">edit_post_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'editor'</span>))</pre></div>
+</li>
+<li>
+<p><strong>保护路由</strong>：<br>
+使用 <code class="notranslate">require</code> 方法来保护路由，确保只有具有相应权限的用户才能访问。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">admin_page</span>():
+    <span class="pl-k">return</span> <span class="pl-s">'This is the admin page'</span>
+
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/edit/&lt;int:post_id&gt;'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">edit_post_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">edit_post</span>(<span class="pl-s1">post_id</span>):
+    <span class="pl-c"># 编辑特定文章的逻辑</span>
+    <span class="pl-k">return</span> <span class="pl-s">'Edit post {}'</span>.<span class="pl-en">format</span>(<span class="pl-s1">post_id</span>)</pre></div>
+</li>
+<li>
+<p><strong>加载用户信息</strong>：<br>
+当身份加载后，可以通过 <code class="notranslate">identity_loaded</code> 信号来加载用户的额外信息。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_loaded</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_loaded</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_loaded</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-c"># 这里可以加载用户的详细信息</span>
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">get_user_by_id</span>(<span class="pl-s1">identity</span>.<span class="pl-s1">id</span>)
+    <span class="pl-s1">identity</span>.<span class="pl-s1">provides</span>.<span class="pl-en">add</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s1">user</span>.<span class="pl-s1">role</span>))
+    <span class="pl-c"># 其他需要提供的信息也可以在这里添加</span></pre></div>
+</li>
+<li>
+<p><strong>处理注销</strong>：<br>
+实现注销逻辑，移除用户身份并重定向到登录页面。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/logout'</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">logout</span>():
+    <span class="pl-c"># 移除用户会话中的 identity</span>
+    <span class="pl-s1">session</span>.<span class="pl-en">pop</span>(<span class="pl-s">'identity.id'</span>, <span class="pl-c1">None</span>)
+    <span class="pl-c"># 发送 identity-changed 信号，通知身份已改变</span>
+    <span class="pl-s1">identity_changed</span>.<span class="pl-en">send</span>(<span class="pl-s1">app</span>, <span class="pl-s1">identity</span><span class="pl-c1">=</span><span class="pl-v">AnonymousIdentity</span>())
+    <span class="pl-k">return</span> <span class="pl-s">'Logged out successfully'</span></pre></div>
+</li>
+</ol>
+<p>这些步骤提供了一个基本的框架，你可以根据你的应用程序的具体需求进行调整。例如，你可能需要集成数据库来验证用户凭据，或者添加更多的角色和权限来管理用户的访问控制。</p>
+<p>在 Flask-Principal 中，权限（Permission）和角色（Role）是两个核心概念，它们用于定义和管理用户的访问权限。以下是如何自定义权限和角色的步骤：</p>
+<h3>自定义角色</h3>
+<p>在 Flask-Principal 中，角色通常与用户的特定属性相关联，例如用户的用户名或用户所属的组。你可以通过简单地创建一个字符串来定义角色，或者如果你需要更复杂的逻辑，可以创建一个自定义的 Role 类。</p>
+<p><strong>简单角色定义</strong>:</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 定义一个简单的角色，例如 'admin'</span>
+<span class="pl-s1">admin_role</span> <span class="pl-c1">=</span> <span class="pl-s">'admin'</span></pre></div>
+<p><strong>自定义 Role 类</strong>:<br>
+如果你需要更复杂的角色逻辑，可以继承 <code class="notranslate">flask_principal.RoleNeed</code> 来创建自定义的 Role 类。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">RoleNeed</span>
+
+<span class="pl-k">class</span> <span class="pl-v">CustomRole</span>(<span class="pl-v">RoleNeed</span>):
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">role_name</span>, <span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>):
+        <span class="pl-en">super</span>(<span class="pl-v">CustomRole</span>, <span class="pl-s1">self</span>).<span class="pl-en">__init__</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>)
+        <span class="pl-s1">self</span>.<span class="pl-s1">role_name</span> <span class="pl-c1">=</span> <span class="pl-s1">role_name</span>
+
+    <span class="pl-k">def</span> <span class="pl-en">allows</span>(<span class="pl-s1">self</span>, <span class="pl-s1">identity</span>):
+        <span class="pl-c"># 自定义允许逻辑，例如检查用户是否属于某个角色</span>
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">role_name</span> <span class="pl-c1">in</span> <span class="pl-s1">identity</span>.<span class="pl-s1">roles</span></pre></div>
+<h3>自定义权限</h3>
+<p>权限是一组需求，代表对某个资源的访问权限。在 Flask-Principal 中，你可以通过创建 <code class="notranslate">Permission</code> 对象来定义自定义权限，并将其与角色或用户属性关联起来。</p>
+<p><strong>定义权限</strong>:</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Permission</span>
+
+<span class="pl-c"># 定义一个权限，它要求用户必须拥有 'admin' 角色</span>
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>))
+
+<span class="pl-c"># 定义另一个权限，它要求用户必须拥有 'editor' 角色</span>
+<span class="pl-s1">editor_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'editor'</span>))</pre></div>
+<p><strong>使用权限保护视图</strong>:<br>
+你可以使用定义的权限来保护 Flask 应用中的视图。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">admin_page</span>():
+    <span class="pl-c"># 只有拥有 'admin' 角色的用户才能访问这个页面</span>
+    <span class="pl-k">return</span> <span class="pl-s">'This is the admin page.'</span>
+
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/edit/&lt;article_id&gt;'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">editor_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">edit_article</span>(<span class="pl-s1">article_id</span>):
+    <span class="pl-c"># 只有拥有 'editor' 角色的用户才能编辑文章</span>
+    <span class="pl-k">return</span> <span class="pl-s">'Edit article {}'</span>.<span class="pl-en">format</span>(<span class="pl-s1">article_id</span>)</pre></div>
+<h3>动态添加角色和权限</h3>
+<p>在某些情况下，你可能需要根据用户的活动或数据库查询动态地添加角色和权限。你可以通过连接到 <code class="notranslate">identity_loaded</code> 信号来实现这一点。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_loaded</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_loaded</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_loaded</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-c"># 假设你已经从数据库或其他数据源获取了用户信息</span>
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">get_user</span>(<span class="pl-s1">identity</span>.<span class="pl-s1">id</span>)
+    <span class="pl-k">if</span> <span class="pl-s1">user</span> <span class="pl-c1">and</span> <span class="pl-s1">user</span>.<span class="pl-s1">is_admin</span>:
+        <span class="pl-s1">identity</span>.<span class="pl-s1">provides</span>.<span class="pl-en">add</span>(<span class="pl-v">CustomRole</span>(<span class="pl-s">'admin'</span>))
+    <span class="pl-k">if</span> <span class="pl-s1">user</span> <span class="pl-c1">and</span> <span class="pl-s1">user</span>.<span class="pl-s1">can_edit</span>:
+        <span class="pl-s1">identity</span>.<span class="pl-s1">provides</span>.<span class="pl-en">add</span>(<span class="pl-v">CustomRole</span>(<span class="pl-s">'editor'</span>))</pre></div>
+<p>通过这些步骤，你可以在 Flask 应用中自定义角色和权限，并使用它们来控制对特定资源的访问。记住，角色和权限的定义应该根据你的应用程序的安全需求和业务逻辑来设计。</p>
+<p>Flask-Principal 和 Flask-Login 是两个互补的 Flask 扩展，它们可以一起使用来提供完整的用户认证和授权解决方案。Flask-Login 管理用户的登录状态和会话，而 Flask-Principal 则负责基于角色的访问控制。</p>
+<p>以下是如何将 Flask-Principal 与 Flask-Login 配合使用的步骤：</p>
+<ol>
+<li>
+<p><strong>安装 Flask-Principal 和 Flask-Login</strong>：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pip install Flask-Principal Flask-Login</pre></div>
+</li>
+<li>
+<p><strong>初始化 Flask 应用和扩展</strong>：<br>
+在你的 Flask 应用中，初始化 Flask-Principal 和 Flask-Login。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-v">Flask</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_login</span> <span class="pl-k">import</span> <span class="pl-v">LoginManager</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Principal</span>
+
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">Flask</span>(<span class="pl-s1">__name__</span>)
+<span class="pl-s1">app</span>.<span class="pl-s1">secret_key</span> <span class="pl-c1">=</span> <span class="pl-s">'your-secret-key'</span>  <span class="pl-c"># 用于保护会话的密钥</span>
+<span class="pl-s1">login_manager</span> <span class="pl-c1">=</span> <span class="pl-v">LoginManager</span>(<span class="pl-s1">app</span>)
+<span class="pl-s1">principal</span> <span class="pl-c1">=</span> <span class="pl-v">Principal</span>(<span class="pl-s1">app</span>)</pre></div>
+</li>
+<li>
+<p><strong>定义用户模型</strong>：<br>
+创建一个用户模型，该模型需要继承自 <code class="notranslate">flask_login.UserMixin</code>，这样 Flask-Login 才能管理用户的登录状态。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_login</span> <span class="pl-k">import</span> <span class="pl-v">UserMixin</span>
+
+<span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">UserMixin</span>):
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">id</span>, <span class="pl-s1">username</span>, <span class="pl-s1">roles</span>):
+        <span class="pl-s1">self</span>.<span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-s1">id</span>
+        <span class="pl-s1">self</span>.<span class="pl-s1">username</span> <span class="pl-c1">=</span> <span class="pl-s1">username</span>
+        <span class="pl-s1">self</span>.<span class="pl-s1">roles</span> <span class="pl-c1">=</span> <span class="pl-s1">roles</span></pre></div>
+</li>
+<li>
+<p><strong>加载用户</strong>：<br>
+实现一个加载用户信息的函数，该函数将由 Flask-Login 调用来验证用户登录。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">login_manager</span>.<span class="pl-s1">user_loader</span></span>
+<span class="pl-k">def</span> <span class="pl-en">load_user</span>(<span class="pl-s1">user_id</span>):
+    <span class="pl-c"># 这里应该有从数据库加载用户信息的逻辑</span>
+    <span class="pl-c"># 例如，查询数据库以获取用户ID对应的用户对象</span>
+    <span class="pl-k">return</span> <span class="pl-v">User</span>(<span class="pl-s1">user_id</span>, <span class="pl-s">'username'</span>, [<span class="pl-s">'role1'</span>, <span class="pl-s">'role2'</span>])</pre></div>
+</li>
+<li>
+<p><strong>处理登录和注销</strong>：<br>
+创建登录和注销的路由，使用 Flask-Login 提供的方法来处理用户的登录和注销。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/login'</span>, <span class="pl-s1">methods</span><span class="pl-c1">=</span>[<span class="pl-s">'GET'</span>, <span class="pl-s">'POST'</span>])</span>
+<span class="pl-k">def</span> <span class="pl-en">login</span>():
+    <span class="pl-k">if</span> <span class="pl-s1">request</span>.<span class="pl-s1">method</span> <span class="pl-c1">==</span> <span class="pl-s">'POST'</span>:
+        <span class="pl-s1">username</span> <span class="pl-c1">=</span> <span class="pl-s1">request</span>.<span class="pl-s1">form</span>[<span class="pl-s">'username'</span>]
+        <span class="pl-s1">password</span> <span class="pl-c1">=</span> <span class="pl-s1">request</span>.<span class="pl-s1">form</span>[<span class="pl-s">'password'</span>]
+        <span class="pl-c"># 验证用户名和密码</span>
+        <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">load_user</span>(<span class="pl-s1">username</span>)  <span class="pl-c"># 假设这个函数会返回一个 User 对象</span>
+        <span class="pl-k">if</span> <span class="pl-s1">user</span> <span class="pl-c1">and</span> <span class="pl-en">check_password</span>(<span class="pl-s1">user</span>, <span class="pl-s1">password</span>):
+            <span class="pl-en">login_user</span>(<span class="pl-s1">user</span>)  <span class="pl-c"># 登录用户</span>
+            <span class="pl-k">return</span> <span class="pl-en">redirect</span>(<span class="pl-en">url_for</span>(<span class="pl-s">'index'</span>))
+    <span class="pl-k">return</span> <span class="pl-en">render_template</span>(<span class="pl-s">'login.html'</span>)
+
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/logout'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">login_required</span>  <span class="pl-c"># 确保用户已登录</span></span>
+<span class="pl-k">def</span> <span class="pl-en">logout</span>():
+    <span class="pl-en">logout_user</span>()  <span class="pl-c"># 注销用户</span>
+    <span class="pl-k">return</span> <span class="pl-en">redirect</span>(<span class="pl-en">url_for</span>(<span class="pl-s">'index'</span>))</pre></div>
+</li>
+<li>
+<p><strong>使用 Flask-Principal 进行授权</strong>：<br>
+使用 Flask-Principal 提供的装饰器来保护路由，确保只有具有特定角色的用户才能访问。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Permission</span>, <span class="pl-v">RoleNeed</span>
+
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>))
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">admin_page</span>():
+    <span class="pl-c"># 只有管理员才能访问这个页面</span>
+    <span class="pl-k">return</span> <span class="pl-s">'This is the admin page.'</span></pre></div>
+</li>
+<li>
+<p><strong>加载身份信息</strong>：<br>
+使用 Flask-Principal 的 <code class="notranslate">identity_loaded</code> 信号来加载用户的身份信息，包括角色和权限。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_loaded</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_loaded</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_loaded</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-s1">identity</span>.<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-s1">current_user</span>  <span class="pl-c"># 设置用户对象</span>
+    <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">current_user</span>, <span class="pl-s">'roles'</span>):
+        <span class="pl-k">for</span> <span class="pl-s1">role</span> <span class="pl-c1">in</span> <span class="pl-s1">current_user</span>.<span class="pl-s1">roles</span>:
+            <span class="pl-s1">identity</span>.<span class="pl-s1">provides</span>.<span class="pl-en">add</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s1">role</span>))  <span class="pl-c"># 添加角色</span></pre></div>
+</li>
+</ol>
+<p>通过这些步骤，你可以结合 Flask-Login 和 Flask-Principal 来管理用户的登录状态和实现基于角色的访问控制。这种组合提供了一个强大且灵活的方式来保护你的 Flask 应用。</p>
+<p>在创建大型模型项目时，使用 Flask 和 Django REST framework (DRF) 各有其优势和劣势。以下是对这两种技术的一些考量：</p>
+<h3>Flask 优势：</h3>
+<ol>
+<li><strong>简单性</strong>：Flask 是一个轻量级的框架，它提供了足够的灵活性来快速构建小型到中型的 Web 应用。</li>
+<li><strong>快速开发</strong>：Flask 的简洁性使得开发者可以快速搭建原型和开发小型项目。</li>
+<li><strong>社区支持</strong>：Flask 拥有一个活跃的社区，提供了大量的扩展和中间件，可以按需集成到项目中。</li>
+<li><strong>灵活性</strong>：Flask 允许开发者选择自己的数据库、表单验证库、认证方案等，这为项目提供了高度的定制性。</li>
+</ol>
+<h3>Flask 劣势：</h3>
+<ol>
+<li><strong>缺乏内置功能</strong>：与 Django 相比，Flask 本身不包含很多内置功能，如表单处理、用户认证等，这可能需要额外的时间和精力来集成第三方扩展。</li>
+<li><strong>扩展性问题</strong>：虽然 Flask 适用于快速开发，但在构建大型、复杂的应用时，可能需要更多的工作来确保应用的扩展性和维护性。</li>
+<li><strong>较少的“开箱即用”工具</strong>：Flask 没有像 Django 那样的内置管理界面和 ORM，这可能需要开发者自己实现这些功能。</li>
+</ol>
+<h3>Django REST framework (DRF) 优势：</h3>
+<ol>
+<li><strong>强大的功能</strong>：DRF 提供了强大的功能，如序列化、认证、权限、限流等，这些都是构建大型 RESTful API 时需要考虑的关键点。</li>
+<li><strong>基于 Django</strong>：DRF 是基于 Django 框架构建的，因此它可以利用 Django 的所有内置功能，如 ORM、模板引擎、管理界面等。</li>
+<li><strong>扩展性</strong>：DRF 旨在与 Django 的其他组件无缝协作，这使得在大型项目中扩展功能变得更加容易。</li>
+<li><strong>安全性</strong>：DRF 提供了多种认证和权限类，可以帮助开发者构建安全的 API。</li>
+</ol>
+<h3>Django REST framework (DRF) 劣势：</h3>
+<ol>
+<li><strong>复杂性</strong>：DRF 相对于 Flask 来说更加复杂，可能需要更长的时间来学习和配置。</li>
+<li><strong>性能开销</strong>：由于 DRF 提供了丰富的功能，这可能会带来一定的性能开销，尤其是在处理大型请求或响应时。</li>
+<li><strong>过度工程</strong>：对于小型项目或简单需求，DRF 可能会显得过于复杂，导致不必要的“过度工程”。</li>
+</ol>
+<p>在选择 Flask 和 DRF 时，需要根据项目的具体需求、团队的技能水平以及预期的应用规模来决定。对于需要快速开发的小型到中型项目，Flask 可能是一个更好的选择。而对于需要强大功能和扩展性的复杂大型项目，使用 Django 结合 DRF 可能会更合适。</p>
+<p>假设你需要在两个月内实现一个AI智能助教的PC端应用程序，这个助教需要能够进行学生问题的回答、课程资料的管理、以及学生的学习进度跟踪。以下是使用 Flask 和 Django REST framework (DRF) 分别实现这个项目的一些考虑因素和例子。</p>
+<h3>使用 Flask 实现 AI 智能助教的例子：</h3>
+<p><strong>优势</strong>:</p>
+<ul>
+<li>快速原型开发：Flask 的简单性允许你快速搭建一个最小可行产品（MVP），专注于核心功能，如问题回答接口。</li>
+<li>灵活的扩展：你可以按需添加其他 Flask 扩展，例如 Flask-SQLAlchemy 用于数据库操作，Flask-WTF 用于表单处理。</li>
+</ul>
+<p><strong>劣势</strong>:</p>
+<ul>
+<li>可能需要额外的工作来实现某些功能，如用户认证和权限管理。</li>
+<li>随着应用的增长，可能需要更多的努力来保持应用的组织和维护。</li>
+</ul>
+<p><strong>实现步骤</strong>:</p>
+<ol>
+<li><strong>项目初始化</strong>：创建 Flask 应用，设置好虚拟环境，安装必要的扩展。</li>
+<li><strong>模型定义</strong>：定义学生、课程、问题和答案等模型。</li>
+<li><strong>API 开发</strong>：开发用于问题回答、课程资料管理和学习进度跟踪的 API 端点。</li>
+<li><strong>AI 集成</strong>：集成一个 AI 服务或库（如 TensorFlow 或 PyTorch）来处理学生的问题并生成答案。</li>
+<li><strong>前端开发</strong>：使用 HTML/CSS/JavaScript 创建用户界面，并通过 AJAX 与后端 API 交互。</li>
+<li><strong>测试和部署</strong>：进行单元测试、集成测试，最后部署到服务器。</li>
+</ol>
+<h3>使用 Django REST framework (DRF) 实现 AI 智能助教的例子：</h3>
+<p><strong>优势</strong>:</p>
+<ul>
+<li>强大的功能：DRF 提供的认证、权限和序列化功能可以简化开发过程。</li>
+<li>内置的 API 文档：通过 Swagger 或 Redoc，可以自动生成 API 文档，方便前端开发者使用。</li>
+<li>Django 的全方位支持：可以利用 Django 的 ORM、模板引擎和内置的管理界面。</li>
+</ul>
+<p><strong>劣势</strong>:</p>
+<ul>
+<li>学习曲线：对于新手来说，Django 和 DRF 可能需要更多的时间来学习和配置。</li>
+<li>性能优化：在处理大量请求时，可能需要额外的优化。</li>
+</ul>
+<p><strong>实现步骤</strong>:</p>
+<ol>
+<li><strong>Django 项目设置</strong>：创建 Django 项目，配置数据库和其他设置。</li>
+<li><strong>应用创建</strong>：在 Django 中创建应用，定义模型和视图。</li>
+<li><strong>API 视图和序列化器</strong>：使用 DRF 创建 API 视图和序列化器，处理数据的输入和输出。</li>
+<li><strong>AI 功能集成</strong>：集成 AI 服务，并创建视图来处理问题回答的逻辑。</li>
+<li><strong>前端模板</strong>：使用 Django 的模板系统创建前端页面。</li>
+<li><strong>用户认证和权限</strong>：配置 DRF 的认证和权限类来保护 API。</li>
+<li><strong>测试和部署</strong>：进行测试，并准备应用的部署。</li>
+</ol>
+<p>在两个月的时间框架内，如果你的团队对 Flask 比较熟悉，那么使用 Flask 可能会更快地启动和运行。但如果你需要一个更全面的解决方案，并且计划在项目中使用 Django 的许多内置功能，那么使用 Django 和 DRF 可能是更好的选择。在任何情况下，都应该优先考虑项目的长期可维护性和扩展性。</p>
+<p>在 Flask-Principal 中，为不同的用户角色设置不同的权限级别涉及到定义多种 <code class="notranslate">Permission</code> 对象，每种权限对应一组特定的角色需求（<code class="notranslate">Need</code>）。以下是如何为不同用户角色设置不同权限级别的步骤：</p>
+<h3>定义角色需求（Need）</h3>
+<p>首先，你需要定义角色需求，这些需求代表了用户必须满足的条件才能访问受保护的资源。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">RoleNeed</span>
+
+<span class="pl-c"># 定义不同角色的需求</span>
+<span class="pl-s1">admin_role</span> <span class="pl-c1">=</span> <span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>)
+<span class="pl-s1">editor_role</span> <span class="pl-c1">=</span> <span class="pl-v">RoleNeed</span>(<span class="pl-s">'editor'</span>)
+<span class="pl-s1">user_role</span> <span class="pl-c1">=</span> <span class="pl-v">RoleNeed</span>(<span class="pl-s">'user'</span>)</pre></div>
+<h3>创建权限（Permission）</h3>
+<p>接下来，你可以根据这些角色需求创建不同的权限。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Permission</span>
+
+<span class="pl-c"># 创建一个只有管理员角色可以访问的权限</span>
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>([<span class="pl-s1">admin_role</span>])
+
+<span class="pl-c"># 创建一个编辑者和用户角色都可以访问的权限</span>
+<span class="pl-s1">content_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>([<span class="pl-s1">editor_role</span>, <span class="pl-s1">user_role</span>])
+
+<span class="pl-c"># 创建一个只有编辑者角色可以编辑内容的权限</span>
+<span class="pl-s1">edit_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>([<span class="pl-s1">editor_role</span>])</pre></div>
+<h3>保护路由</h3>
+<p>现在，你可以使用这些权限来保护 Flask 应用中的路由。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-v">Flask</span>
+
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">Flask</span>(<span class="pl-s1">__name__</span>)
+
+<span class="pl-c"># 保护一个路由，只有管理员角色可以访问</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">admin_page</span>():
+    <span class="pl-k">return</span> <span class="pl-s">'This is the admin page.'</span>
+
+<span class="pl-c"># 保护一个路由，编辑者和用户角色都可以访问</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/content'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">content_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">content_page</span>():
+    <span class="pl-k">return</span> <span class="pl-s">'This is the content page.'</span>
+
+<span class="pl-c"># 保护一个路由，只有编辑者角色可以编辑内容</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/edit/&lt;article_id&gt;'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">edit_permission</span>.<span class="pl-en">require</span>(<span class="pl-s1">http_exception</span><span class="pl-c1">=</span><span class="pl-c1">403</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">edit_article</span>(<span class="pl-s1">article_id</span>):
+    <span class="pl-k">return</span> <span class="pl-s">'Edit article {}'</span>.<span class="pl-en">format</span>(<span class="pl-s1">article_id</span>)</pre></div>
+<h3>动态设置用户身份</h3>
+<p>在用户登录后，你需要根据用户的实际角色动态设置其身份。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_loaded</span>, <span class="pl-v">Identity</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_loaded</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_loaded</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-c"># 假设你有一个函数来获取用户的角色</span>
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">get_user_by_identity</span>(<span class="pl-s1">identity</span>)
+    <span class="pl-k">if</span> <span class="pl-s1">user</span>:
+        <span class="pl-c"># 根据用户角色添加相应的需求到身份对象</span>
+        <span class="pl-k">for</span> <span class="pl-s1">role</span> <span class="pl-c1">in</span> <span class="pl-s1">user</span>.<span class="pl-s1">roles</span>:
+            <span class="pl-s1">identity</span>.<span class="pl-s1">provides</span>.<span class="pl-en">add</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s1">role</span>))</pre></div>
+<p>通过这种方式，你可以为不同的用户角色设置不同的权限级别，并在 Flask 应用中保护相应的路由。每个 <code class="notranslate">Permission</code> 对象都可以包含一个或多个角色需求，这样你就可以精细地控制不同角色对资源的访问权限。</p>
+<p>在一个典型的 Flask 项目中，<code class="notranslate">model.py</code> 文件通常用于定义数据库模型（Model）。这些数据库模型对应着应用程序中的数据结构，每个模型类代表着一个数据库表。通过定义模型，你可以使用 SQLAlchemy 或其他 ORM（对象关系映射）工具来操作数据库，包括创建、读取、更新和删除数据。</p>
+<p>通常情况下，<code class="notranslate">model.py</code> 文件会包含以下内容：</p>
+<ol>
+<li><strong>导入必要的模块和类</strong>：通常会导入 Flask 扩展（如 SQLAlchemy、Flask-Migrate、Flask-Bcrypt 等）以及需要的其他模块。</li>
+<li><strong>定义数据库模型类</strong>：每个数据库表对应一个模型类。这些模型类通常继承自 SQLAlchemy 提供的 <code class="notranslate">db.Model</code> 类，从而获得对数据库操作的能力。模型类中的类属性通常对应着数据库表中的字段，而类方法则用于定义模型的行为和操作。</li>
+<li><strong>定义数据库关系</strong>：如果有多个数据库表之间存在关联关系，通常会在模型类中定义相应的关系。这些关系包括一对一关系、一对多关系、多对多关系等，可以使用 SQLAlchemy 提供的 <code class="notranslate">relationship</code> 和 <code class="notranslate">backref</code> 等属性进行定义。</li>
+<li><strong>定义模型方法</strong>：模型类中通常会定义一些方法，用于对数据进行操作或者进行其他相关逻辑处理。这些方法可以用于验证数据、格式化输出、执行查询等操作。</li>
+<li><strong>定义数据表的初始化操作</strong>：在一些情况下，你可能希望在应用程序启动时创建数据库表，或者进行数据库迁移等操作。在 <code class="notranslate">model.py</code> 文件中，你可以编写相应的初始化操作，以确保数据库表的正确创建和更新。</li>
+</ol>
+<p>总之，<code class="notranslate">model.py</code> 文件在 Flask 项目中扮演着定义和管理数据库模型的重要角色，它使得开发者能够方便地操作数据库，并且可以更好地组织和管理应用程序的数据结构。</p>
+<p>除了 <code class="notranslate">model.py</code>，在 Flask 框架中还有一些常用的文件名称，它们各自起着不同的作用。以下是一些常见的文件名称及其作用：</p>
+<ol>
+<li><strong><code class="notranslate">app.py</code></strong>：
+<ul>
+<li><code class="notranslate">app.py</code> 是 Flask 应用程序的入口文件，通常用于创建 Flask 应用实例以及配置应用程序的各种参数，如路由、视图函数、中间件等。在较小的项目中，所有的应用逻辑都可能直接编写在 <code class="notranslate">app.py</code> 中。</li>
+</ul>
+</li>
+<li><strong><code class="notranslate">config.py</code></strong>：
+<ul>
+<li><code class="notranslate">config.py</code> 用于存储应用程序的配置信息，如数据库连接地址、密钥、调试模式等。通过将配置信息单独放在一个文件中，可以方便地进行管理和修改，并且可以在不同的环境中使用不同的配置。</li>
+</ul>
+</li>
+<li><strong><code class="notranslate">routes.py</code></strong> 或者 <strong><code class="notranslate">views.py</code></strong>：
+<ul>
+<li><code class="notranslate">routes.py</code> 或 <code class="notranslate">views.py</code> 文件通常包含应用程序的路由定义和视图函数。路由定义用于将 URL 和对应的视图函数关联起来，而视图函数则用于处理请求并生成响应。将路由和视图函数单独放在一个文件中可以更好地组织和管理代码。</li>
+</ul>
+</li>
+<li><strong><code class="notranslate">forms.py</code></strong>：
+<ul>
+<li><code class="notranslate">forms.py</code> 文件用于定义 Flask-WTF 或 WTForms 表单类。在 Web 应用程序中，表单通常用于收集用户输入的数据，而 Flask-WTF 或 WTForms 可以帮助开发者创建、验证和处理表单数据。</li>
+</ul>
+</li>
+<li><strong><code class="notranslate">extensions.py</code></strong>：
+<ul>
+<li><code class="notranslate">extensions.py</code> 文件用于初始化和配置 Flask 扩展。在 Flask 应用程序中，通常会使用多个扩展来提供额外的功能，如数据库操作、表单验证、身份认证等。通过将扩展的初始化和配置集中在一个文件中，可以更好地组织代码并提高可维护性。</li>
+</ul>
+</li>
+<li><strong><code class="notranslate">utils.py</code></strong>：
+<ul>
+<li><code class="notranslate">utils.py</code> 文件用于存放一些通用的工具函数或辅助函数。这些函数通常与业务逻辑无关，但可以在整个应用程序中被多次使用。将这些函数放在单独的文件中有助于代码的重用和维护。</li>
+</ul>
+</li>
+<li><strong><code class="notranslate">tests.py</code></strong> 或者 <strong><code class="notranslate">test_\*.py</code></strong>：
+<ul>
+<li><code class="notranslate">tests.py</code> 或 <code class="notranslate">test_*.py</code> 文件用于编写应用程序的单元测试、集成测试或功能测试。在开发过程中，编写测试是确保应用程序质量的重要手段，可以通过测试文件来组织和管理测试用例。</li>
+</ul>
+</li>
+</ol>
+<p>以上列出的文件名称在实际项目中可能会有所不同，具体使用与组织方式可能因项目规模、团队约定或个人偏好而异。然而，这些文件名称通常用于组织和管理 Flask 项目中的代码结构，使得代码更具可读性、可维护性和可扩展性。</p>
+<h3>主要功能模块介绍</h3>
+<p>Flask-Principal 是一个用于 Flask 应用程序的身份验证和权限控制扩展。它提供了基于角色的访问控制（RBAC）模型，使得开发者可以轻松地为 Flask 应用添加用户身份验证和权限管理功能。以下是 Flask-Principal 中一些常用的函数及其用法和功能：</p>
+<ol>
+<li>
+<p><code class="notranslate">Identity</code> 类</p>
+<ul>
+<li>功能：用于表示用户的身份。</li>
+<li>用法：创建一个 <code class="notranslate">Identity</code> 实例，并将其与用户信息关联。</li>
+<li>输入：用户名（<code class="notranslate">username</code>），用户角色列表（<code class="notranslate">roles</code>），以及其他身份信息。</li>
+<li>输出：<code class="notranslate">Identity</code> 对象，可以通过该对象获取用户信息和角色。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Identity</span>
+
+<span class="pl-s1">user_identity</span> <span class="pl-c1">=</span> <span class="pl-v">Identity</span>(<span class="pl-s1">username</span><span class="pl-c1">=</span><span class="pl-s">'johndoe'</span>, <span class="pl-s1">roles</span><span class="pl-c1">=</span>[<span class="pl-s">'user'</span>])</pre></div>
+</li>
+<li>
+<p><code class="notranslate">UserLoader</code> 函数</p>
+<ul>
+<li>功能：用于加载用户信息的回调函数。</li>
+<li>用法：定义一个函数，接受用户名作为参数，并返回相应的用户信息（<code class="notranslate">Identity</code> 对象）。</li>
+<li>输入：用户名（<code class="notranslate">username</code>）。</li>
+<li>输出：<code class="notranslate">Identity</code> 对象。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">user_loader</span>(<span class="pl-s1">username</span>):
+    <span class="pl-c"># 根据用户名查询用户信息</span>
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">query_user_by_username</span>(<span class="pl-s1">username</span>)
+    <span class="pl-k">return</span> <span class="pl-v">Identity</span>(<span class="pl-s1">username</span><span class="pl-c1">=</span><span class="pl-s1">user</span>[<span class="pl-s">'username'</span>], <span class="pl-s1">roles</span><span class="pl-c1">=</span><span class="pl-s1">user</span>[<span class="pl-s">'roles'</span>])</pre></div>
+</li>
+<li>
+<p><code class="notranslate">IdentityChanged</code> 事件</p>
+<ul>
+<li>功能：当用户身份发生变化时触发的事件。</li>
+<li>用法：在 Flask 应用中注册事件监听器，以便在用户身份变化时执行特定的操作。</li>
+<li>输入：无。</li>
+<li>输出：无。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-s1">session</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">IdentityChanged</span>
+
+<span class="pl-en">@<span class="pl-s1">main_app</span>.<span class="pl-s1">context_processor</span></span>
+<span class="pl-k">def</span> <span class="pl-en">utility_processor</span>():
+    <span class="pl-k">return</span> <span class="pl-en">dict</span>(<span class="pl-s1">identity_changed</span><span class="pl-c1">=</span><span class="pl-v">IdentityChanged</span>.<span class="pl-en">get_identifer</span>())</pre></div>
+</li>
+<li>
+<p><code class="notranslate">Permission</code> 类</p>
+<ul>
+<li>功能：用于定义权限。</li>
+<li>用法：创建一个 <code class="notranslate">Permission</code> 实例，用于表示特定的权限。</li>
+<li>输入：权限名称（<code class="notranslate">name</code>）。</li>
+<li>输出：<code class="notranslate">Permission</code> 对象。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Permission</span>
+
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-s">'admin-access'</span>)</pre></div>
+</li>
+<li>
+<p><code class="notranslate">RoleNeed</code> 类</p>
+<ul>
+<li>功能：用于定义角色需求。</li>
+<li>用法：创建一个 <code class="notranslate">RoleNeed</code> 实例，用于表示特定的角色需求。</li>
+<li>输入：角色名称（<code class="notranslate">role</code>）。</li>
+<li>输出：<code class="notranslate">RoleNeed</code> 对象。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">RoleNeed</span>
+
+<span class="pl-s1">admin_role</span> <span class="pl-c1">=</span> <span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>)</pre></div>
+</li>
+<li>
+<p><code class="notranslate">require</code> 装饰器</p>
+<ul>
+<li>功能：用于确保视图函数只能由具有特定角色或权限的用户访问。</li>
+<li>用法：在视图函数上使用 <code class="notranslate">require</code> 装饰器，并指定所需的角色或权限。</li>
+<li>输入：<code class="notranslate">Permission</code> 或 <code class="notranslate">RoleNeed</code> 对象。</li>
+<li>输出：装饰后的视图函数。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-v">Flask</span>, <span class="pl-s1">g</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">require</span>, <span class="pl-v">RoleNeed</span>
+
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">Flask</span>(<span class="pl-s1">__name__</span>)
+<span class="pl-s1">admin_role</span> <span class="pl-c1">=</span> <span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>)
+
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-en">require</span>(<span class="pl-s1">admin_role</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">admin</span>():
+    <span class="pl-s1">g</span>.<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">get_current_user</span>()  <span class="pl-c"># 获取当前用户信息</span>
+    <span class="pl-k">return</span> <span class="pl-s">'Admin Page'</span></pre></div>
+</li>
+<li>
+<p><code class="notranslate">identity_loaded</code> 事件</p>
+<ul>
+<li>功能：当用户身份被加载时触发的事件。</li>
+<li>用法：在 Flask 应用中注册事件监听器，以便在用户身份加载时执行特定的操作。</li>
+<li>输入：无。</li>
+<li>输出：无。</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_loaded</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_loaded</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_loaded</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-c"># 当身份加载时，更新会话信息</span>
+    <span class="pl-s1">session</span>[<span class="pl-s">'user_id'</span>] <span class="pl-c1">=</span> <span class="pl-s1">identity</span>.<span class="pl-s1">id</span></pre></div>
+</li>
+</ol>
+<p>这些函数和类是 Flask-Principal 扩展的核心组件，它们提供了一套完整的工具，帮助开发者在 Flask 应用中实现用户身份验证和权限控制。通过这些组件，开发者可以轻松地保护应用程序的敏感部分，确保只有授权用户才能访问特定的资源和执行特定的操作。</p>
+<p>Flask-Principal 是一个用于 Flask 应用的身份验证和权限管理工具。它提供了一种灵活的方式来保护资源和视图，确保只有具有适当权限的用户才能访问。以下是 Flask-Principal 应用于权限管理时的工作流程和一个简单的代码示例。</p>
+<h3>工作流程</h3>
+<ol>
+<li>
+<p><strong>安装 Flask-Principal</strong>：<br>
+首先，需要安装 Flask-Principal 扩展。可以通过 pip 来安装：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pip install flask-principal</pre></div>
+</li>
+<li>
+<p><strong>初始化 Flask 应用</strong>：<br>
+创建 Flask 应用实例，并初始化 Flask-Principal。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-v">Flask</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Principal</span>
+
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">Flask</span>(<span class="pl-s1">__name__</span>)
+<span class="pl-v">Principal</span>(<span class="pl-s1">app</span>)</pre></div>
+</li>
+<li>
+<p><strong>定义权限</strong>：<br>
+使用 <code class="notranslate">Permission</code> 类来定义应用程序中的权限。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Permission</span>, <span class="pl-v">RoleNeed</span>
+
+<span class="pl-c"># 定义一个需要管理员角色的权限</span>
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>))</pre></div>
+</li>
+<li>
+<p><strong>创建视图</strong>：<br>
+创建视图函数，并使用 <code class="notranslate">admin_permission.require()</code> 装饰器或上下文管理器来保护视图。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>()</span>
+<span class="pl-k">def</span> <span class="pl-en">admin</span>():
+    <span class="pl-k">return</span> <span class="pl-s">'This is the admin page.'</span></pre></div>
+</li>
+<li>
+<p><strong>身份验证</strong>：<br>
+实现身份验证逻辑，通常与 Flask-Login 等身份验证提供者结合使用。当用户登录时，更新 <code class="notranslate">Identity</code> 对象以反映用户的认证状态。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_login</span> <span class="pl-k">import</span> <span class="pl-s1">login_user</span>, <span class="pl-s1">current_user</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Identity</span>, <span class="pl-s1">identity_changed</span>
+
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/login'</span>, <span class="pl-s1">methods</span><span class="pl-c1">=</span>[<span class="pl-s">'GET'</span>, <span class="pl-s">'POST'</span>])</span>
+<span class="pl-k">def</span> <span class="pl-en">login</span>():
+    <span class="pl-c"># 假设有一个验证用户的方法</span>
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">authenticate_user</span>()
+    <span class="pl-k">if</span> <span class="pl-s1">user</span>:
+        <span class="pl-en">login_user</span>(<span class="pl-s1">user</span>)
+        <span class="pl-s1">identity_changed</span>.<span class="pl-en">send</span>(<span class="pl-s1">app</span>, <span class="pl-s1">identity</span><span class="pl-c1">=</span><span class="pl-v">Identity</span>(<span class="pl-s1">user</span>.<span class="pl-s1">id</span>))
+    <span class="pl-k">return</span> <span class="pl-s">'Login page'</span></pre></div>
+</li>
+<li>
+<p><strong>加载用户信息</strong>：<br>
+使用 <code class="notranslate">identity_loaded</code> 信号来为 <code class="notranslate">Identity</code> 对象添加额外的用户信息，如角色和权限。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask_login</span> <span class="pl-k">import</span> <span class="pl-s1">current_user</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-s1">identity_loaded</span>
+
+<span class="pl-en">@<span class="pl-s1">identity_loaded</span>.<span class="pl-en">connect_via</span>(<span class="pl-s1">app</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">on_identity_loaded</span>(<span class="pl-s1">sender</span>, <span class="pl-s1">identity</span>):
+    <span class="pl-s1">identity</span>.<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-s1">current_user</span>
+    <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">current_user</span>, <span class="pl-s">'roles'</span>):
+        <span class="pl-k">for</span> <span class="pl-s1">role</span> <span class="pl-c1">in</span> <span class="pl-s1">current_user</span>.<span class="pl-s1">roles</span>:
+            <span class="pl-s1">identity</span>.<span class="pl-s1">provides</span>.<span class="pl-en">add</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s1">role</span>))</pre></div>
+</li>
+<li>
+<p><strong>处理权限</strong>：<br>
+在视图函数中，可以使用 <code class="notranslate">Permission</code> 对象来检查用户是否具有执行特定操作的权限。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-s1">abort</span>
+
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/secret'</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">secret</span>():
+    <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">admin_permission</span>.<span class="pl-en">can</span>():
+        <span class="pl-en">abort</span>(<span class="pl-c1">403</span>)  <span class="pl-c"># Forbidden</span>
+    <span class="pl-c"># 执行需要管理员权限的操作</span>
+    <span class="pl-k">return</span> <span class="pl-s">'This is a secret page.'</span></pre></div>
+</li>
+</ol>
+<h3>代码示例</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">flask</span> <span class="pl-k">import</span> <span class="pl-v">Flask</span>, <span class="pl-v">Response</span>
+<span class="pl-k">from</span> <span class="pl-s1">flask_principal</span> <span class="pl-k">import</span> <span class="pl-v">Principal</span>, <span class="pl-v">Permission</span>, <span class="pl-v">RoleNeed</span>
+
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">Flask</span>(<span class="pl-s1">__name__</span>)
+<span class="pl-v">Principal</span>(<span class="pl-s1">app</span>)
+
+<span class="pl-c"># 创建一个需要管理员角色的权限</span>
+<span class="pl-s1">admin_permission</span> <span class="pl-c1">=</span> <span class="pl-v">Permission</span>(<span class="pl-v">RoleNeed</span>(<span class="pl-s">'admin'</span>))
+
+<span class="pl-c"># 保护视图的装饰器方式</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/admin'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>()</span>
+<span class="pl-k">def</span> <span class="pl-en">do_admin_index</span>():
+    <span class="pl-k">return</span> <span class="pl-v">Response</span>(<span class="pl-s">'Only if you are an admin'</span>)
+
+<span class="pl-c"># 保护视图的上下文管理器方式</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">route</span>(<span class="pl-s">'/articles'</span>)</span>
+<span class="pl-k">def</span> <span class="pl-en">do_articles</span>():
+    <span class="pl-k">with</span> <span class="pl-s1">admin_permission</span>.<span class="pl-en">require</span>():
+        <span class="pl-k">return</span> <span class="pl-v">Response</span>(<span class="pl-s">'Only if you are admin'</span>)</pre></div>
+<p>以上工作流程和代码示例展示了如何使用 Flask-Principal 来实现基于角色的访问控制。通过定义权限、保护视图和加载用户信息，可以确保应用程序的安全性和数据的完整性。</p>
+<ul>
+<li>
+<p>创建视图的目的是？</p>
+</li>
+<li>
+<p>创建视图的目的是在 Web 应用程序中定义用户可以访问的页面或资源。在 Flask 框架中，视图是响应用户请求的函数，它们处理用户的输入，执行必要的逻辑，并返回相应的响应，通常是 HTML 页面、重定向、JSON 数据或其他内容。</p>
+<p>具体来说，创建视图的目的包括以下几点：</p>
+<ol>
+<li>
+<p><strong>响应用户请求</strong>：视图函数是 Flask 应用中处理 HTTP 请求的核心。它们接收来自客户端的请求，并根据请求的 URL、HTTP 方法（GET、POST 等）和其他参数来执行相应的操作。</p>
+</li>
+<li>
+<p><strong>逻辑处理</strong>：视图函数中可以包含业务逻辑，如数据库操作、文件处理、用户认证、权限验证等。这些逻辑处理用户的请求，并决定返回什么样的响应。</p>
+</li>
+<li>
+<p><strong>数据展示</strong>：视图负责从模型（如数据库）中检索数据，并将其传递给模板引擎（如 Jinja2），生成最终的 HTML 页面展示给用户。</p>
+</li>
+<li>
+<p><strong>用户交互</strong>：通过视图，应用程序可以提供用户交互的接口，例如表单提交、数据搜索、内容更新等。</p>
+</li>
+<li>
+<p><strong>权限控制</strong>：视图可以被用来实现权限控制，确保只有具有相应权限的用户才能访问特定的资源或执行特定的操作。这通常通过使用装饰器（如 <code class="notranslate">@login_required</code> 或 <code class="notranslate">@admin_permission.require()</code>）来实现。</p>
+</li>
+<li>
+<p><strong>API 支持</strong>：对于提供 API 的 Web 应用，视图函数可以设计为返回 JSON 或 XML 格式的数据，供其他应用程序或服务调用。</p>
+</li>
+<li>
+<p><strong>错误处理</strong>：视图还可以处理错误情况，如用户请求的资源不存在（404 错误）、服务器内部错误（500 错误）等，并返回适当的错误信息。</p>
+</li>
+<li>
+<p><strong>性能优化</strong>：通过合理设计视图，可以优化应用程序的性能，例如通过缓存机制减少数据库访问次数，或者通过异步处理来提高响应速度。</p>
+</li>
+</ol>
+<p>总之，创建视图是为了构建 Web 应用程序的用户界面和交互逻辑，提供用户友好的访问入口，并确保应用程序的安全性和功能性。</p>
+</li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://aneverspring.github.io/evenstar/">Even Star</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("08/09/2024"!=""){
+    var startSite=new Date("08/09/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>
+
+</html>
