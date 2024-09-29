@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:20:24 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>后端构建</title><link>https://aneverspring.github.io/evenstar//post/hou-duan-gou-jian.html</link><description>状态信息：&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:23:05 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>Flask-Principal权限管理模块开发</title><link>https://aneverspring.github.io/evenstar//post/Flask-Principal-quan-xian-guan-li-mo-kuai-kai-fa.html</link><description># Flask-Principal权限管理模块开发文档&#13;
+&#13;
+## 1. 概述&#13;
+&#13;
+Flask-Principal权限管理模块是一个用于Flask应用的扩展，它提供了基于角色的访问控制（RBAC）功能。</description><guid isPermaLink="true">https://aneverspring.github.io/evenstar//post/Flask-Principal-quan-xian-guan-li-mo-kuai-kai-fa.html</guid><pubDate>Sun, 29 Sep 2024 12:22:40 +0000</pubDate></item><item><title>后端构建</title><link>https://aneverspring.github.io/evenstar//post/hou-duan-gou-jian.html</link><description>状态信息：&#13;
 &#13;
 登录——&gt;发送请求，鉴权，后续都要带上用户名及密码&#13;
 &#13;
