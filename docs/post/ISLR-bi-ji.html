@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# ISLR
+
+### introduction
+
+In Chapter 3,we discuss ==linear regression==（线性回归）, which can be used to predict wage from this data set. Ideally, we should predict wage in a way that accounts for the ==non-linear==(非线性) relationship between wage and age. 
+
+The Wage data involves predicting a *continuous* or *quantitative* output value. This is often referred to as a ==*regression* problem==(回归问题). However, in certain cases we may instead wish to predict a non-numerical value—that is, a *categorical*(分类的) or *qualitative*(定性的) output. This is known as a ==*classification* problem==(分类问题). 
+
+ *quadratic discriminant analysis model* to the subset of the Smarket data(二次判别分析模型的市场数据子集)
+
+ visualize the data.(数据可视化)
+
+The left-hand panel of Figure 1.4 addresses this problem by representing each of the 64 cell lines using just two numbers, *Z*1 and *Z*2. These are the first two *principal components* of the data, which summarize the 6*,*830 expression measurements for each cell line down to two numbers or *dimensions*. While it is likely that this ==dimension reduction== has resulted in some loss of information, it is now possible to ==visually examine the data for evidence of clustering==. Deciding on the number of ==clusters== is often a difficult problem. 
+
+图1.4的左侧面板通过仅用两个数字Z1和Z2来表示64个细胞系中的每个细胞系，从而解决了这个问题。">
+<meta property="og:title" content="ISLR笔记">
+<meta property="og:description" content="# ISLR
+
+### introduction
+
+In Chapter 3,we discuss ==linear regression==（线性回归）, which can be used to predict wage from this data set. Ideally, we should predict wage in a way that accounts for the ==non-linear==(非线性) relationship between wage and age. 
+
+The Wage data involves predicting a *continuous* or *quantitative* output value. This is often referred to as a ==*regression* problem==(回归问题). However, in certain cases we may instead wish to predict a non-numerical value—that is, a *categorical*(分类的) or *qualitative*(定性的) output. This is known as a ==*classification* problem==(分类问题). 
+
+ *quadratic discriminant analysis model* to the subset of the Smarket data(二次判别分析模型的市场数据子集)
+
+ visualize the data.(数据可视化)
+
+The left-hand panel of Figure 1.4 addresses this problem by representing each of the 64 cell lines using just two numbers, *Z*1 and *Z*2. These are the first two *principal components* of the data, which summarize the 6*,*830 expression measurements for each cell line down to two numbers or *dimensions*. While it is likely that this ==dimension reduction== has resulted in some loss of information, it is now possible to ==visually examine the data for evidence of clustering==. Deciding on the number of ==clusters== is often a difficult problem. 
+
+图1.4的左侧面板通过仅用两个数字Z1和Z2来表示64个细胞系中的每个细胞系，从而解决了这个问题。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aneverspring.github.io/evenstar//post/ISLR-bi-ji.html">
+<meta property="og:image" content="https://sm.ms/image/DVHlFwPxga64KZX">
+<title>ISLR笔记</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ISLR笔记</h1>
+<div class="title-right">
+    <a href="https://aneverspring.github.io/evenstar/" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/AnEverSpring/evenstar/issues/6" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>ISLR</h1>
+<h3>introduction</h3>
+<p>In Chapter 3,we discuss ==linear regression==（线性回归）, which can be used to predict wage from this data set. Ideally, we should predict wage in a way that accounts for the ==non-linear==(非线性) relationship between wage and age.</p>
+<p>The Wage data involves predicting a <em>continuous</em> or <em>quantitative</em> output value. This is often referred to as a ==<em>regression</em> problem==(回归问题). However, in certain cases we may instead wish to predict a non-numerical value—that is, a <em>categorical</em>(分类的) or <em>qualitative</em>(定性的) output. This is known as a ==<em>classification</em> problem==(分类问题).</p>
+<p><em>quadratic discriminant analysis model</em> to the subset of the Smarket data(二次判别分析模型的市场数据子集)</p>
+<p>visualize the data.(数据可视化)</p>
+<p>The left-hand panel of Figure 1.4 addresses this problem by representing each of the 64 cell lines using just two numbers, <em>Z</em>1 and <em>Z</em>2. These are the first two <em>principal components</em> of the data, which summarize the 6*,*830 expression measurements for each cell line down to two numbers or <em>dimensions</em>. While it is likely that this ==dimension reduction== has resulted in some loss of information, it is now possible to ==visually examine the data for evidence of clustering==. Deciding on the number of ==clusters== is often a difficult problem.</p>
+<p>图1.4的左侧面板通过仅用两个数字Z1和Z2来表示64个细胞系中的每个细胞系，从而解决了这个问题。这是数据的前两个主要组成部分，它将每个细胞系的6,830个表达测量值总结为两个数字或维度。虽然这种==降维==很可能导致了一些信息的丢失，但现在可以==可视化地检查数据以获得聚类的证据==。决定==集群==的数量通常是一个棘手的问题。</p>
+<p><em>Many statistical learning methods are relevant and useful in a wide</em> range of academic and non-academic disciplines, beyond just the statistical sciences. We believe that many contemporary statistical learning procedures should, and will, become as widely available and used as is currently the case for classical methods such as linear regression. <strong>As a result, rather than attempting to consider every possible approach (an impossible task), we have concentrated on presenting the methods that we believe are most widely applicable.</strong></p>
+<p>许多统计学习方法在广泛的学术和非学术学科中都是相关和有用的。我们认为，许多当代统计学习程序应该而且将像目前线性回归等经典方法一样广泛可用和使用。因此，<strong>我们并没有试图考虑每一种可能的方法（一项不可能完成的任务），而是集中精力展示我们认为最广泛适用的方法</strong>。</p>
+<p><em>Statistical learning should not be viewed as a series of black boxes.</em> No single approach will perform well in all possible applications. Without understanding all of the cogs inside the box, or the interaction between those cogs, it is impossible to select the best box. Hence,<strong>we have attempted to carefully describe the model, intuition, assumptions, and trade-offs behind each of the methods that we consider.</strong></p>
+<p>统计学习不应该被视为一系列的黑盒子。没有一种方法在所有可能的应用中都表现良好。如果不了解盒子里所有的所有齿轮，或者这些齿轮之间的相互作用，就不可能选择最好的盒子。因此，<strong>我们试图仔细描述我们所考虑的每一种方法背后的模型、直觉、假设和交易</strong>。</p>
+<p>We will let <em>p</em> denote the number of variables that are available for use in making predictions. For example, the Wage data set consists of 11 ==variables==(变量) for 3*,<em>000 people, so we have <em>n</em> = 3</em>,*000 observations and <em>p</em> = 11 variables (such as year, age, race, and more).</p>
+<p>In Chapter 4 we discuss two of the most important classical classification methods, ==<em>logistic regression</em>== and ==<em>linear discriminant analysis</em>==.</p>
+<p>在第四章中，我们讨论了两种最重要的经典分类方法，==逻辑回归==和==线性判别分析==。</p>
+<p>A central problem in all statistical learning situations involves <strong>choosing the best method for a given application</strong>. Hence, in Chapter 5 we introduce ==<em>cross-validation</em>== and the <em>==bootstrap==</em>, which can be used to estimate the accuracy of a number of different methods in order to choose the best one.</p>
+<p>在所有的统计学习情况下的一个中心问题包括为一个给定的应用程序选择最佳的方法。因此，在第5章中，我们介绍了==交叉验证==和==自助法==，它可以用来估计一些不同的方法的准确性，以选择最好的方法。</p>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="image-20240424113535781" style="max-width: 100%;"></a></p>
+<p>In essence, statistical learning refers to a set of approaches for ==estimating <em>f</em>==. In this chapter we outline some of the key theoretical concepts that arise in estimating <em>f</em>, as well as tools for evaluating the estimates obtained.</p>
+<p>在本质上，统计学习指的是一套==估计f==的方法。在本章中，我们概述了在估计f时出现的一些关键的理论概念，以及评估所获得的估计数的工具。</p>
+<p><em>prediction</em> and <em>inference</em>    预测和推断</p>
+<p>The focus of this book is on techniques for estimating <em>f</em> with the aim of variance ==minimizing the reducible error==. It is important to keep in mind that the irreducible error will always provide an upper bound on the accuracy of our prediction for <em>Y</em> . <strong>This bound is almost always unknown in practice</strong>.</p>
+<p>这本书的重点是在估计f的技术，目的为==最小化可约误差==。重要的是要记住，不可约误差总是为我们对Y的预测精度提供一个上限。<strong>这个界限在实践中几乎总是未知的</strong>。</p>
+<h4>箱型图</h4>
+<ul>
+<li><em>Q</em>0/4：[<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E5%80%BC" rel="nofollow">最小值</a>](<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E5%80%BC)%EF%BC%88minimum%EF%BC%89" rel="nofollow">https://zh.wikipedia.org/wiki/最小值)（minimum）</a></li>
+<li><em>Q</em>1/4：第1[<a href="https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0" rel="nofollow">四分位数</a>](<a href="https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0)%EF%BC%88lower" rel="nofollow">https://zh.wikipedia.org/wiki/四分位数)（lower</a> quartile）</li>
+<li><em>Q</em>2/4：[<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E4%BD%8D%E6%95%B8" rel="nofollow">中位数</a>](<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E4%BD%8D%E6%95%B8)%EF%BC%88%E7%AC%AC2%5B%5B%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0%5D(https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0)%5D(https://zh.wikipedia.org/wiki/%5B%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0%5D(https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0))%E3%80%81median%EF%BC%89" rel="nofollow">https://zh.wikipedia.org/wiki/中位數)（第2[[四分位数](https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0)](https://zh.wikipedia.org/wiki/[四分位数](https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0))、median）</a></li>
+<li><em>Q</em>3/4：第3<a href="https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0" rel="nofollow">四分位数</a>（upper quartile）</li>
+<li><em>Q</em>4/4：[<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%80%BC" rel="nofollow">最大值</a>](<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%80%BC)%EF%BC%88maximum%EF%BC%89" rel="nofollow">https://zh.wikipedia.org/wiki/最大值)（maximum）</a></li>
+</ul>
+<p>以第1四分位数（<em>Q</em>1/4）和第3四分位数（<em>Q</em>３/4）的数值作为箱型的上下限。</p>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="" style="max-width: 100%;"></a></p>
+<p>这组数据显示出：</p>
+<ul>
+<li>下边界=5</li>
+<li>第1四分位数（Q1）=7</li>
+<li>中位数、第2四分位数（median、Q2）=8.5</li>
+<li>第3四分位数（Q3）=9</li>
+<li>上边界=10</li>
+<li>四分位间距（interquartile range，简称IQR）=<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cfeb78e75981128f4920466e2789b7d4d2ee63e38281850b24cdedd287f67c80/68747470733a2f2f77696b696d656469612e6f72672f6170692f726573745f76312f6d656469612f6d6174682f72656e6465722f7376672f61373330363435353265336366386436393364326361396232653466313834343239633437633637"><img src="https://camo.githubusercontent.com/cfeb78e75981128f4920466e2789b7d4d2ee63e38281850b24cdedd287f67c80/68747470733a2f2f77696b696d656469612e6f72672f6170692f726573745f76312f6d656469612f6d6174682f72656e6465722f7376672f61373330363435353265336366386436393364326361396232653466313834343239633437633637" alt="{\displaystyle (Q3-Q1)}" data-canonical-src="https://wikimedia.org/api/rest_v1/media/math/render/svg/a73064552e3cf8d693d2ca9b2e4f184429c47c67" style="max-width: 100%;"></a>=2 （即ΔQ)</li>
+</ul>
+<p>当有数值与第1与第3四分位数的范围差距1.5×IQR以上时，该值为离群值（outlier）。</p>
+<p>数值位于范围外1.5×IQR到3×IQR范围的数值，称作适度离群值（mild outlier）。<br>
+数值位于范围外3×IQR以上的数值，称作极端离群值（extreme outlier）。</p>
+<p>因此该图中的离群值有：</p>
+<ul>
+<li>适度离群值（mild outlier） = 3.5</li>
+<li>极端离群值（extreme outlier） = 0.5</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href=""><img alt="" style="max-width: 100%;"></a></p>
+<p>但箱形图也有他的局限性，比如：不能精确地衡量数据分布的偏态和尾重程度；对于批量比较大的数据，反映的信息更加模糊以及用中位数代表总体评价水平有一定的局限性。</p>
+<p>优点：</p>
+<p>1.直观地观察到异常值，如果数据存在离群点，即位于上下边缘区域之外，以圆点的形式表示<br>
+2.当箱型图很短时，意味着很多数据多集中分布在很小的范围内<br>
+3.当箱型图很长时，意味着数据分布比较离散，数据间的差异比较大<br>
+4.当中位数接近底部时，说明大部分的数据值比较小<br>
+5.当中位数接近顶部时，说明大部分的数据值比较大<br>
+6.中位数所处的高低位置能反映数据的偏斜程度<br>
+7.如果上下虚线比较长，说明上下四分位数之外的数据变化比较大，整体数据的方差和标准偏差也比较大<br>
+8.箱型图的上下边缘并非最大值或最小值</p>
+<h3>Chapter 1. Statistical Learning</h3>
+<p>In other words, our goal is to develop <strong>an accurate model</strong> that can be used to predict sales on the basis of the three media budgets.</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://aneverspring.github.io/evenstar/">Even Star</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("08/09/2024"!=""){
+    var startSite=new Date("08/09/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>
+
+</html>

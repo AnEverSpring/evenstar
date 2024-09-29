@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 11:51:55 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>多模态分析</title><link>https://aneverspring.github.io/evenstar//post/duo-mo-tai-fen-xi.html</link><description># 多模态分析(Multimodal Analysis)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Even Star</title><link>https://aneverspring.github.io/evenstar/</link><description>Kill time, or kiss time.</description><copyright>Even Star</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://sm.ms/image/DVHlFwPxga64KZX</url><title>avatar</title><link>https://aneverspring.github.io/evenstar/</link></image><lastBuildDate>Sun, 29 Sep 2024 12:06:46 +0000</lastBuildDate><managingEditor>Even Star</managingEditor><ttl>60</ttl><webMaster>Even Star</webMaster><item><title>ISLR笔记</title><link>https://aneverspring.github.io/evenstar//post/ISLR-bi-ji.html</link><description># ISLR&#13;
+&#13;
+### introduction&#13;
+&#13;
+In Chapter 3,we discuss ==linear regression==（线性回归）, which can be used to predict wage from this data set. Ideally, we should predict wage in a way that accounts for the ==non-linear==(非线性) relationship between wage and age. &#13;
+&#13;
+The Wage data involves predicting a *continuous* or *quantitative* output value. This is often referred to as a ==*regression* problem==(回归问题). However, in certain cases we may instead wish to predict a non-numerical value—that is, a *categorical*(分类的) or *qualitative*(定性的) output. This is known as a ==*classification* problem==(分类问题). &#13;
+&#13;
+ *quadratic discriminant analysis model* to the subset of the Smarket data(二次判别分析模型的市场数据子集)&#13;
+&#13;
+ visualize the data.(数据可视化)&#13;
+&#13;
+The left-hand panel of Figure 1.4 addresses this problem by representing each of the 64 cell lines using just two numbers, *Z*1 and *Z*2. These are the first two *principal components* of the data, which summarize the 6*,*830 expression measurements for each cell line down to two numbers or *dimensions*. While it is likely that this ==dimension reduction== has resulted in some loss of information, it is now possible to ==visually examine the data for evidence of clustering==. Deciding on the number of ==clusters== is often a difficult problem. &#13;
+&#13;
+图1.4的左侧面板通过仅用两个数字Z1和Z2来表示64个细胞系中的每个细胞系，从而解决了这个问题。</description><guid isPermaLink="true">https://aneverspring.github.io/evenstar//post/ISLR-bi-ji.html</guid><pubDate>Sun, 29 Sep 2024 12:06:22 +0000</pubDate></item><item><title>多模态分析</title><link>https://aneverspring.github.io/evenstar//post/duo-mo-tai-fen-xi.html</link><description># 多模态分析(Multimodal Analysis)&#13;
 &#13;
 &#13;
 ### 一、定义&#13;
