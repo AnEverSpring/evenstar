@@ -103,16 +103,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>is 与 == 区别：<br>
 is 用于判断两个变量引用对象是否为同一个(同一块内存空间)， == 用于判断引用变量的值是否相等。</p>
 </blockquote>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>]
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">is</span> <span class="pl-s1">a</span> 
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>]
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">is</span> <span class="pl-s1">a</span> 
 <span class="pl-c1">True</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">==</span> <span class="pl-s1">a</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">==</span> <span class="pl-s1">a</span>
 <span class="pl-c1">True</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span>[:]
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">is</span> <span class="pl-s1">a</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">=</span> <span class="pl-s1">a</span>[:]
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">is</span> <span class="pl-s1">a</span>
 <span class="pl-c1">False</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">==</span> <span class="pl-s1">a</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">b</span> <span class="pl-c1">==</span> <span class="pl-s1">a</span>
 <span class="pl-c1">True</span></pre></div>
 <markdown-accessiblity-table><table role="table">
 <thead>
@@ -220,13 +220,13 @@ is 用于判断两个变量引用对象是否为同一个(同一块内存空间)
 <span class="pl-en">print</span>(<span class="pl-s1">str</span> <span class="pl-c1">+</span> <span class="pl-s">" Awesome"</span>) <span class="pl-c"># 输出连接的字符串</span></pre></div>
 <p>以上实例输出结果：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>!
-<span class="pl-v">H</span>
+<span class="pl-c1">H</span>
 <span class="pl-s1">llo</span>
 <span class="pl-s1">llo</span> <span class="pl-v">ShowMeAI</span>!
 <span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>!<span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>!
 <span class="pl-v">Hello</span> <span class="pl-v">ShowMeAI</span>! <span class="pl-v">Awesome</span></pre></div>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span><span class="pl-s1">letters</span> <span class="pl-c1">=</span> [<span class="pl-s">'s'</span>,<span class="pl-s">'h'</span>,<span class="pl-s">'o'</span>,<span class="pl-s">'w'</span>,<span class="pl-s">'m'</span>,<span class="pl-s">'e'</span>]
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span><span class="pl-s1">letters</span> <span class="pl-c1">=</span> [<span class="pl-c1">1</span>:<span class="pl-c1">4</span>:<span class="pl-c1">2</span>]
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span><span class="pl-s1">letters</span> <span class="pl-c1">=</span> [<span class="pl-s">'s'</span>,<span class="pl-s">'h'</span>,<span class="pl-s">'o'</span>,<span class="pl-s">'w'</span>,<span class="pl-s">'m'</span>,<span class="pl-s">'e'</span>]
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span><span class="pl-s1">letters</span> <span class="pl-c1">=</span> [<span class="pl-c1">1</span>:<span class="pl-c1">4</span>:<span class="pl-c1">2</span>]
 
 [<span class="pl-s">'h'</span>,<span class="pl-s">'w'</span>]</pre></div>
 <ol start="3">
@@ -263,7 +263,7 @@ is 用于判断两个变量引用对象是否为同一个(同一块内存空间)
 <p>字典(dictionary)是除列表以外python之中最灵活的内置数据结构类型。列表是有序的对象集合，字典是无序的对象集合。</p>
 <p>两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。</p>
 <p>字典用”{ }”标识。字典由索引(key)和它对应的值value组成。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span><span class="pl-s1">d</span> <span class="pl-c1">=</span> {<span class="pl-s1">key1</span> : <span class="pl-s1">value1</span>, <span class="pl-s1">key2</span> : <span class="pl-s1">value2</span>, <span class="pl-s1">key3</span> : <span class="pl-s1">value3</span>}</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span><span class="pl-s1">d</span> <span class="pl-c1">=</span> {<span class="pl-s1">key1</span> : <span class="pl-s1">value1</span>, <span class="pl-s1">key2</span> : <span class="pl-s1">value2</span>, <span class="pl-s1">key3</span> : <span class="pl-s1">value3</span>}</pre></div>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span> <span class="pl-c1">=</span> {}
 <span class="pl-s1">dict</span>[<span class="pl-s">'one'</span>] <span class="pl-c1">=</span> <span class="pl-s">"This is one"</span>
 <span class="pl-s1">dict</span>[<span class="pl-c1">2</span>] <span class="pl-c1">=</span> <span class="pl-s">"This is two"</span>
@@ -271,8 +271,8 @@ is 用于判断两个变量引用对象是否为同一个(同一块内存空间)
 <span class="pl-en">print</span>(<span class="pl-s1">dict</span>[<span class="pl-s">'one'</span>]) <span class="pl-c"># 输出键为'one' 的值</span>
 <span class="pl-en">print</span>(<span class="pl-s1">dict</span>[<span class="pl-c1">2</span>]) <span class="pl-c"># 输出键为 2 的值</span>
 <span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>) <span class="pl-c"># 输出完整的字典</span>
-<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>.<span class="pl-en">keys</span>()) <span class="pl-c"># 输出所有键</span>
-<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>.<span class="pl-en">values</span>()) <span class="pl-c"># 输出所有值</span></pre></div>
+<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>.<span class="pl-c1">keys</span>()) <span class="pl-c"># 输出所有键</span>
+<span class="pl-en">print</span>(<span class="pl-s1">tinydict</span>.<span class="pl-c1">values</span>()) <span class="pl-c"># 输出所有值</span></pre></div>
 <p>输出结果为：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">This</span> <span class="pl-c1">is</span> <span class="pl-s1">one</span>
 <span class="pl-v">This</span> <span class="pl-c1">is</span> <span class="pl-s1">two</span>
@@ -288,9 +288,9 @@ for index in range(len(fruits)):
 	print("完成!")
 </code></pre>
 <p>以上代码输出结果：</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">当前水果</span> : <span class="pl-s1">香蕉</span>
-<span class="pl-s1">当前水果</span> : <span class="pl-s1">苹果</span>
-<span class="pl-s1">当前水果</span> : <span class="pl-s1">葡萄</span>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">当前水果</span> : <span class="pl-smi">香蕉</span>
+<span class="pl-s1">当前水果</span> : <span class="pl-smi">苹果</span>
+<span class="pl-s1">当前水果</span> : <span class="pl-smi">葡萄</span>
 <span class="pl-s1">完成</span>!</pre></div>
 <p>以上实例我们使用了内置函数 len() 和 range(),函数 len() 返回列表的长度，即元素的个数。 range返回一个序列的数。</p>
 <h3>循环</h3>
@@ -464,12 +464,12 @@ for index in range(len(fruits)):
 <p>Python 中三引号可以将复杂的字符串进行赋值。</p>
 <p>Python 三引号允许一个字符串跨多行，字符串中可以包含换行符、制表符以及其他特殊字符。</p>
 <p>三引号的语法是一对连续的单引号或者双引号（通常都是成对的用）。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"> <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">hi</span> <span class="pl-c1">=</span> <span class="pl-s">'''hi </span>
+<div class="highlight highlight-source-python"><pre class="notranslate"> <span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">hi</span> <span class="pl-c1">=</span> <span class="pl-s">'''hi </span>
 <span class="pl-s"> there'''</span>
- <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">hi</span>   <span class="pl-c"># repr()</span>
+ <span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">hi</span>   <span class="pl-c"># repr()</span>
  <span class="pl-s">'hi<span class="pl-cce">\</span></span>
 <span class="pl-s"><span class="pl-cce"></span> there'</span>
- <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-en">print</span>(<span class="pl-s1">hi</span>)  <span class="pl-c"># str()</span>
+ <span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-en">print</span>(<span class="pl-s1">hi</span>)  <span class="pl-c"># str()</span>
  
  <span class="pl-s1">hi</span> <span class="pl-s1">there</span></pre></div>
 <p>三引号让程序员从引号和特殊字符串的泥潭里面解脱出来，自始至终保持一小块字符串的格式是所谓的WYSIWYG（所见即所得）格式的。</p>
@@ -483,15 +483,15 @@ for index in range(len(fruits)):
 <span class="pl-s"> ONCLICK="window.history.back()"&gt;&lt;/FORM&gt;</span>
 <span class="pl-s"> &lt;/BODY&gt;&lt;/HTML&gt;'''</span>
  
- <span class="pl-s1">cursor</span>.<span class="pl-en">execute</span>(<span class="pl-s">'''</span>
+ <span class="pl-s1">cursor</span>.<span class="pl-c1">execute</span>(<span class="pl-s">'''</span>
 <span class="pl-s"> CREATE TABLE users (</span>
 <span class="pl-s"> login VARCHAR(8), </span>
 <span class="pl-s"> uid INTEGER,prid INTEGER)</span>
 <span class="pl-s"> '''</span>)</pre></div>
 <h3>列表</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">list</span> <span class="pl-c1">=</span> []          <span class="pl-c"># 空列表</span>
-<span class="pl-s1">list</span>.<span class="pl-en">append</span>(<span class="pl-s">'Google'</span>)   <span class="pl-c"># 使用 append() 添加元素</span>
-<span class="pl-s1">list</span>.<span class="pl-en">append</span>(<span class="pl-s">'ShowMeAI'</span>)
+<span class="pl-s1">list</span>.<span class="pl-c1">append</span>(<span class="pl-s">'Google'</span>)   <span class="pl-c"># 使用 append() 添加元素</span>
+<span class="pl-s1">list</span>.<span class="pl-c1">append</span>(<span class="pl-s">'ShowMeAI'</span>)
 <span class="pl-en">print</span>(<span class="pl-s1">list</span>)</pre></div>
 <p>以上代码执行结果：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate">[<span class="pl-s">'Google'</span>, <span class="pl-s">'ShowMeAI'</span>]</pre></div>
@@ -650,20 +650,20 @@ for index in range(len(fruits)):
 </tbody>
 </table></markdown-accessiblity-table>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">del</span> <span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]  <span class="pl-c"># 删除键是'Name'的条目</span>
-<span class="pl-s1">dict</span>.<span class="pl-en">clear</span>()      <span class="pl-c"># 清空字典所有条目</span>
+<span class="pl-s1">dict</span>.<span class="pl-c1">clear</span>()      <span class="pl-c"># 清空字典所有条目</span>
 <span class="pl-k">del</span> <span class="pl-s1">dict</span>          <span class="pl-c"># 删除字典</span></pre></div>
 <p>两个重要的点需要记住：</p>
 <p>1）不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会更新前一个，如下实例：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span> <span class="pl-c1">=</span> {<span class="pl-s">'Name'</span>: <span class="pl-s">'Zara'</span>, <span class="pl-s">'Age'</span>: <span class="pl-c1">7</span>, <span class="pl-s">'Name'</span>: <span class="pl-s">'ShowMeAI'</span>} <span class="pl-k">print</span> <span class="pl-s">"dict['Name']: "</span>, <span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]</pre></div>
 <p>以上实例输出结果：</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]:  <span class="pl-v">ShowMeAI</span></pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>]:  <span class="pl-smi">ShowMeAI</span></pre></div>
 <p>2）键必须不可变，所以可以用数字，字符串或元组充当，所以用列表就不行，如下实例：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">dict</span> <span class="pl-c1">=</span> {[<span class="pl-s">'Name'</span>]: <span class="pl-s">'Zara'</span>, <span class="pl-s">'Age'</span>: <span class="pl-c1">7</span>}
 <span class="pl-en">print</span>(<span class="pl-s">"dict['Name']: "</span>, <span class="pl-s1">dict</span>[<span class="pl-s">'Name'</span>])</pre></div>
 <p>以上实例输出结果：</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">Traceback</span> (<span class="pl-s1">most</span> <span class="pl-s1">recent</span> <span class="pl-s1">call</span> <span class="pl-s1">last</span>):
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">Traceback</span> (<span class="pl-s1">most</span> <span class="pl-s1">recent</span> <span class="pl-s1">call</span> <span class="pl-s1">last</span>):
 <span class="pl-v">File</span> <span class="pl-s">"&lt;string&gt;"</span>, <span class="pl-s1">line</span> <span class="pl-c1">3</span>, <span class="pl-s1">in</span> <span class="pl-c1">&lt;</span><span class="pl-s1">module</span><span class="pl-c1">&gt;</span>
-<span class="pl-v">TypeError</span>: <span class="pl-s1">unhashable</span> <span class="pl-s1">type</span>: <span class="pl-s">'list'</span></pre></div>
+<span class="pl-v">TypeError</span>: <span class="pl-s1">unhashable</span> type: <span class="pl-s">'list'</span></pre></div>
 <h4>字典内置函数与方法</h4>
 <p>Python字典包含了以下内置函数：</p>
 <markdown-accessiblity-table><table role="table">
@@ -844,8 +844,8 @@ for index in range(len(fruits)):
 <p>python 中一切都是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象。</p>
 <h3>不定长参数</h3>
 <p>你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述 2 种参数不同，声明时不会命名。基本语法如下：</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-s1">function_name</span>([<span class="pl-s1">formal_args</span>,] <span class="pl-c1">*</span><span class="pl-s1">var_args_tuple</span> ):
-    "<span class="pl-s1">函数_文档字符串</span>"   
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-s1">function_name</span>([<span class="pl-smi">formal_args</span>,] <span class="pl-c1">*</span><span class="pl-s1">var_args_tuple</span> ):
+    <span class="pl-s">"函数_文档字符串"</span>   
 	<span class="pl-s1">function_suite</span>
     <span class="pl-k">return</span> [<span class="pl-s1">expression</span>]</pre></div>
 <p>加了星号 ***** 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。</p>
@@ -879,8 +879,8 @@ for index in range(len(fruits)):
 <span class="pl-c1">80</span>
 <span class="pl-c1">70</span></pre></div>
 <p>还有一种就是参数带两个星号 ******基本语法如下：</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-s1">function_name</span>([<span class="pl-s1">formal_args</span>,] <span class="pl-c1">**</span><span class="pl-s1">var_args_dict</span> ):  
-    "<span class="pl-s1">函数_文档字符串</span>" 
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-s1">function_name</span>([<span class="pl-smi">formal_args</span>,] <span class="pl-c1">**</span><span class="pl-s1">var_args_dict</span> ):  
+    <span class="pl-s">"函数_文档字符串"</span> 
 	<span class="pl-s1">function_suite</span>
     <span class="pl-k">return</span> [<span class="pl-s1">expression</span>]</pre></div>
 <p>加了两个星号 *<strong>*</strong> 的参数会以字典的形式导入。</p>
@@ -938,16 +938,16 @@ for index in range(len(fruits)):
 <p>在 10 次迭代后停止执行：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">IterNumbers</span>:
   <span class="pl-k">def</span> <span class="pl-en">__iter__</span>(<span class="pl-s1">self</span>):
-    <span class="pl-s1">self</span>.<span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>
+    <span class="pl-s1">self</span>.<span class="pl-c1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>
     <span class="pl-k">return</span> <span class="pl-s1">self</span>
   <span class="pl-k">def</span> <span class="pl-en">__next__</span>(<span class="pl-s1">self</span>):
-    <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">a</span> <span class="pl-c1">&lt;=</span> <span class="pl-c1">10</span>:
-      <span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">a</span>
-      <span class="pl-s1">self</span>.<span class="pl-s1">a</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+    <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-c1">a</span> <span class="pl-c1">&lt;=</span> <span class="pl-c1">10</span>:
+      <span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">a</span>
+      <span class="pl-s1">self</span>.<span class="pl-c1">a</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
       <span class="pl-k">return</span> <span class="pl-s1">x</span>
     <span class="pl-k">else</span>:
       <span class="pl-k">raise</span> <span class="pl-v">StopIteration</span>
-<span class="pl-s1">num_class</span> <span class="pl-c1">=</span> <span class="pl-v">IterNumbers</span>()
+<span class="pl-s1">num_class</span> <span class="pl-c1">=</span> <span class="pl-en">IterNumbers</span>()
 <span class="pl-s1">iter_num</span> <span class="pl-c1">=</span> <span class="pl-en">iter</span>(<span class="pl-s1">num_class</span>)
 <span class="pl-k">for</span> <span class="pl-s1">x</span> <span class="pl-c1">in</span> <span class="pl-s1">iter_num</span>:
   <span class="pl-en">print</span>(<span class="pl-s1">x</span>)</pre></div>
